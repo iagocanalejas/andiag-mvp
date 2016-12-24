@@ -11,11 +11,11 @@ Library to help developers build full MVP apps.
   - For Activities
       - Extend ``` AIActivity<YOUR_PRESENTER> ```
       - Call ``` setPresenter(YOUR_PRESENTER_INSTANCE); ``` in your onCreate method
-      - Call ``` getPresenter().onViewCreated(); ``` in your onResume method
+      - ``` getPresenter().onViewCreated(); ``` is called in your onResume method
   - For Fragments
       - Extend ``` AIFragment<YOUR_PRESENTER> ```
       - Call ``` setPresenter(YOUR_PRESENTER_INSTANCE); ``` in your onAttach method
-      - Call ``` getPresenter().onViewCreated(); ``` in your onViewCreated method
+      - ``` getPresenter().onViewCreated(); ``` is called in your onViewCreated method
 
 # Usage Example for Activities
   1. Configure your gradle:
@@ -87,14 +87,6 @@ Library to help developers build full MVP apps.
         /*INITIALICE PRESENTER*/
         setPresenter(CustomPresenter.getInstance());
  
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        
-        /*TELL TO PRESENTER THAT OUR VIEW IS CREATED*/
-        getPresenter().onViewCreated();
     }
 
     /*CALLBACKS FOR THE PRESENTER*/
