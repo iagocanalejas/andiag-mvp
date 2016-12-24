@@ -1,10 +1,6 @@
 package es.coru.andiag.andiag_mvp.views;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
 
@@ -16,36 +12,23 @@ import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
 public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivity {
     private final static String TAG = AIActivity.class.getSimpleName();
 
-    private P mPresenter;
+    protected P mPresenter;
 
-    protected void setPresenter(@NonNull P presenter) {
-        mPresenter = presenter;
-    }
-
-    protected P getPresenter() {
-        return mPresenter;
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        if (mPresenter == null) {
-            Log.e(TAG, "Null Presenter: Initialize it on setPresenter method");
-        }
-        mPresenter.attach(getApplication(), this);
-    }
+    protected abstract void initPresenter();
 
     @Override
     protected void onResume() {
         super.onResume();
+        initPresenter();
+        mPresenter.attach(getApplication(), this);
         mPresenter.onViewCreated();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        this.mPresenter.detach();
-        this.mPresenter = null;
+        mPresenter.detach();
+        mPresenter = null;
     }
 
 }

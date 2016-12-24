@@ -12,7 +12,6 @@ public class MainActivity extends AIActivity<CustomPresenter> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setPresenter(CustomPresenter.getInstance());
     }
 
     /**
@@ -24,4 +23,8 @@ public class MainActivity extends AIActivity<CustomPresenter> {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void initPresenter() {
+        mPresenter = CustomPresenter.getInstance();
+    }
 }
