@@ -21,6 +21,8 @@ Library to help developers build full MVP apps.
       - ``` getPresenter().onViewCreated(); ``` is called in your onViewCreated method
       - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singletone.
 
+You can user our **extension library** [AndIag-MVP-Utils](https://github.com/iagocanalejas/andiag-mvp-utils)
+
 # Usage Example for Activities
   1. Configure your gradle:
     
