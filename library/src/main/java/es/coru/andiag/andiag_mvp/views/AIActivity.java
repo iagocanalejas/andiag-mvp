@@ -25,8 +25,8 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         mPresenter.detach();
         mPresenter = null;
     }

@@ -41,10 +41,15 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment {
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroyView() {
+        super.onDestroyView();
         mPresenter.detach();
         mPresenter = null;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
         mParentContext = null;
     }
 
