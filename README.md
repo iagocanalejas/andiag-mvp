@@ -93,12 +93,6 @@ Library to help developers build full MVP apps.
         mPresenter = CustomPresenter.getInstance();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
     /*CALLBACKS FOR THE PRESENTER*/
 
   }
