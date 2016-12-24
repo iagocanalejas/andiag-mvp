@@ -15,12 +15,6 @@ public class MainActivity extends AIActivity<CustomPresenter> {
         setPresenter(CustomPresenter.getInstance());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getPresenter().onViewCreated();
-    }
-
     /**
      * Example of callback from the presenter.
      *
