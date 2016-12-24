@@ -11,6 +11,10 @@ import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
  */
 public class CustomPresenter extends AIPresenter<Application, MainActivity> {
 
+    /**
+     * Recommended singleton implementation for presenters
+     */
+    //region Singleton
     private static CustomPresenter instance = null;
 
     private CustomPresenter() {
@@ -22,6 +26,7 @@ public class CustomPresenter extends AIPresenter<Application, MainActivity> {
         }
         return instance;
     }
+    //endregion
 
     /**
      * Automatically called on presenter attach. VIEW MIGHT NOT BE CREATED JET

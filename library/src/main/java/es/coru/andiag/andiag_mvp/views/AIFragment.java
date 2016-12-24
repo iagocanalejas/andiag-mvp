@@ -28,8 +28,8 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onResume() {
+        super.onResume();
         initPresenter();
         mPresenter.attach(mParentContext, this);
     }
