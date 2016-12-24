@@ -28,11 +28,36 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         initPresenter();
         mPresenter.attach(mParentContext, this);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (mPresenter == null) {
+            initPresenter();
+        }
+        if (!mPresenter.isViewAttached()) {
+            mPresenter.attach(mParentContext, this);
+        }
         mPresenter.onViewCreated();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mPresenter == null || !mPresenter.isViewAttached()) {
+            if (mPresenter == null) {
+                initPresenter();
+            }
+            if (!mPresenter.isViewAttached()) {
+                mPresenter.attach(mParentContext, this);
+            }
+            mPresenter.onViewCreated();
+        }
     }
 
     @Override

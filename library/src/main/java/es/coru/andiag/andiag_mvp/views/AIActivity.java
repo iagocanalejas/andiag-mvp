@@ -1,5 +1,7 @@
 package es.coru.andiag.andiag_mvp.views;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
@@ -17,10 +19,21 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     protected abstract void initPresenter();
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         initPresenter();
         mPresenter.attach(getApplication(), this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mPresenter == null) {
+            initPresenter();
+        }
+        if (!mPresenter.isViewAttached()) {
+            mPresenter.attach(getApplication(), this);
+        }
         mPresenter.onViewCreated();
     }
 
