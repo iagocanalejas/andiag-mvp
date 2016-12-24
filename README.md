@@ -12,12 +12,14 @@ Library to help developers build full MVP apps.
       - V -> Your view interface
   - For Activities
       - Extend ``` AIActivity<YOUR_PRESENTER> ```
-      - Call ``` setPresenter(YOUR_PRESENTER_INSTANCE); ``` in your onCreate method
+      - Override method ``` protected void initPresenter() ```
       - ``` getPresenter().onViewCreated(); ``` is called in your onResume method
+      - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singletone.
   - For Fragments
       - Extend ``` AIFragment<YOUR_PRESENTER> ```
-      - Call ``` setPresenter(YOUR_PRESENTER_INSTANCE); ``` in your onAttach method
+      - Override method ``` protected void initPresenter() ```
       - ``` getPresenter().onViewCreated(); ``` is called in your onViewCreated method
+      - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singletone.
 
 # Usage Example for Activities
   1. Configure your gradle:
@@ -41,6 +43,10 @@ Library to help developers build full MVP apps.
   ```java
   public class CustomPresenter extends AIPresenter<Application, MainActivity> {
 
+    /**
+     * Recommended singleton implementation for presenters
+     */
+    //region Singleton
     private static CustomPresenter instance = null;
 
     private CustomPresenter() {
@@ -52,6 +58,7 @@ Library to help developers build full MVP apps.
         }
         return instance;
     }
+    //endregion
 
     /**
      * Automatically called on presenter attach. VIEW MIGHT NOT BE CREATED JET
@@ -82,13 +89,14 @@ Library to help developers build full MVP apps.
   public class MainActivity extends AIActivity<CustomPresenter> {
 
     @Override
+    protected void initPresenter() {
+        mPresenter = CustomPresenter.getInstance();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        /*INITIALICE PRESENTER*/
-        setPresenter(CustomPresenter.getInstance());
- 
     }
 
     /*CALLBACKS FOR THE PRESENTER*/
