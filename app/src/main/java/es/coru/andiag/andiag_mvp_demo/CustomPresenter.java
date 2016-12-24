@@ -1,9 +1,10 @@
-package es.coru.andiag.andiag_mvp;
+package es.coru.andiag.andiag_mvp_demo;
 
 import android.app.Application;
 import android.widget.Toast;
 
 import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
+
 
 /**
  * Created by Iago on 24/12/2016.

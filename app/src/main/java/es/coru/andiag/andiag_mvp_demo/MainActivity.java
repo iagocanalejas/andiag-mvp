@@ -1,9 +1,10 @@
-package es.coru.andiag.andiag_mvp;
+package es.coru.andiag.andiag_mvp_demo;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
 import es.coru.andiag.andiag_mvp.views.AIActivity;
+
 
 public class MainActivity extends AIActivity<CustomPresenter> {
 
@@ -12,6 +13,11 @@ public class MainActivity extends AIActivity<CustomPresenter> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setPresenter(CustomPresenter.getInstance());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getPresenter().onViewCreated();
     }
 

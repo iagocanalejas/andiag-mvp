@@ -3,7 +3,8 @@
 buildscript {
     ext {
         versions = [supportLib: '25.1.0',
-                    buildTools: "25.0.2"]
+                    buildTools: "25.0.2",
+                    compiledSdk: 25]
     }
 
     repositories {

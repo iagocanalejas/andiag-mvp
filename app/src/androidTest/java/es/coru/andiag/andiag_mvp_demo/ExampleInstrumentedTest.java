@@ -1,4 +1,4 @@
-package es.coru.andiag.andiag_mvp;
+package es.coru.andiag.andiag_mvp_demo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion versions.compiledSdk
     buildToolsVersion "$versions.buildTools"
     defaultConfig {
-        applicationId "es.coru.andiag.andiag_mvp"
-        minSdkVersion 15
-        targetSdkVersion 25
+        applicationId "es.coru.andiag.andiag_mvp_demo"
+        minSdkVersion 16
+        targetSdkVersion versions.compiledSdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
