@@ -37,6 +37,10 @@ public class CustomPresenter extends AIPresenter<Application, MainActivity> {
     public void onViewCreated() {
         super.onViewCreated();
         callback();
+        /**
+         * Once this method occurs {@link AIPresenter.isViewAttached} will return True.
+         * Use it from your callbacks
+         */
     }
 
     private void callback() {
