@@ -2,14 +2,16 @@ package es.coru.andiag.andiag_mvp.presenters;
 
 import android.support.annotation.NonNull;
 
+import java.lang.ref.WeakReference;
+
 /**
  * Created by Canalejas on 17/12/2016.
  * All presenters must extends this class or implements {@link AIInterfacePresenter}
  */
 public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
 
-    private V mView;
-    private C mContext;
+    private WeakReference<V> mView;
+    private WeakReference<C> mContext;
 
     private boolean isViewAttached = false;
     private boolean isViewCreated = false;
@@ -23,8 +25,8 @@ public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
     @Override
     public final void attach(C context, @NonNull V view) {
         this.isViewAttached = true;
-        this.mView = view;
-        this.mContext = context;
+        this.mView = new WeakReference<V>(view);
+        this.mContext = new WeakReference<C>(context);
         onViewAttached();
     }
 
@@ -44,7 +46,7 @@ public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
      */
     @Override
     public final V getView() {
-        return mView;
+        return mView.get();
     }
 
     /**
@@ -52,7 +54,7 @@ public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
      */
     @Override
     public final C getContext() {
-        return mContext;
+        return mContext.get();
     }
 
     /**
