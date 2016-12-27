@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
+apply from: '../quality/quality.gradle'
+
 group='com.github.iagocanalejas'
 
 android {
