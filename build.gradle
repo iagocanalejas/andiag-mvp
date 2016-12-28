@@ -2,7 +2,7 @@
 
 ext {
     libraryCode = 1
-    libraryName = '0.0.7'
+    libraryName = '0.1'
     compiledSdk = 25
     buildTools = '25.0.2'
     supportLib = '25.1.0'
