@@ -14,12 +14,12 @@ Library to help developers build full MVP apps.
       - Extend ``` AIActivity<YOUR_PRESENTER> ```
       - Override method ``` protected void initPresenter() ```
       - ``` getPresenter().onViewCreated(); ``` is called in your onResume method
-      - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singletone.
+      - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singleton.
   - For Fragments
       - Extend ``` AIFragment<YOUR_PRESENTER> ```
       - Override method ``` protected void initPresenter() ```
       - ``` getPresenter().onViewCreated(); ``` is called in your onViewCreated method
-      - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singletone.
+      - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
 
 You can user our **extension library** [AndIag-MVP-Utils](https://github.com/iagocanalejas/andiag-mvp-utils)
 
