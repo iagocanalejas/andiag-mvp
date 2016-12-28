@@ -4,11 +4,14 @@ import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 
+import es.coru.andiag.andiag_mvp.views.AIDelegatedView;
+
 /**
  * Created by Canalejas on 17/12/2016.
  * All presenters must extends this class or implements {@link AIInterfacePresenter}
  */
-public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
+public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInterfacePresenter<C, V> {
+    private final static String TAG = AIPresenter.class.getSimpleName();
 
     private WeakReference<V> mView;
     private WeakReference<C> mContext;
@@ -82,10 +85,18 @@ public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
     }
 
     /**
+     * Called when presenter is attached to view.
+     * Its recommended to start background processing here
+     */
+    protected void onViewAttached() {
+
+    }
+
+    /**
      * Called when view is detached
      */
-    public void onViewDetached() {
-        isViewCreated = false;
+    protected void onViewDetached() {
+
     }
 
     /**
@@ -97,9 +108,10 @@ public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
     }
 
     /**
-     * Called when presenter is attached to view.
-     * Its recommended to start background processing here
+     * Call this method from activity when view is destroyed.
      */
-    public abstract void onViewAttached();
+    public void onViewDestroyed() {
+        isViewCreated = false;
+    }
 
 }
