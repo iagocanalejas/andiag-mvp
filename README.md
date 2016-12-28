@@ -123,7 +123,7 @@ I welcome and encourage all pull requests. Here are some basic rules to follow t
 
   LICENSE
 ============
-  Copyright 2016 Iago Santos Domínguez
+  Copyright 2016 AndIag
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
