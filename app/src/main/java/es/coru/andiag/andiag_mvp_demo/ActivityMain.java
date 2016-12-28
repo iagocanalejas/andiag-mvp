@@ -1,17 +1,32 @@
 package es.coru.andiag.andiag_mvp_demo;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import es.coru.andiag.andiag_mvp.views.AIActivity;
 
 
-public class MainActivity extends AIActivity<CustomPresenter> {
+public class ActivityMain extends AIActivity<CustomPresenter> {
+
+    @Override
+    public void onInitPresenter() {
+        mPresenter = CustomPresenter.getInstance();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.fragment_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityMain.this, ActivityFragment.class));
+            }
+        });
+
     }
 
     /**
@@ -23,8 +38,4 @@ public class MainActivity extends AIActivity<CustomPresenter> {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void initPresenter() {
-        mPresenter = CustomPresenter.getInstance();
-    }
 }

@@ -1,9 +1,11 @@
 package es.coru.andiag.andiag_mvp.presenters;
 
+import es.coru.andiag.andiag_mvp.views.AIDelegatedView;
+
 /**
  * Created by Canalejas on 17/12/2016.
  */
-public interface AIInterfacePresenter<C, V> {
+public interface AIInterfacePresenter<C, V extends AIDelegatedView> {
 
     /**
      * @return presenter's view or null
