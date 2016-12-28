@@ -25,8 +25,8 @@ public abstract class AIPresenter<C, V> implements AIInterfacePresenter<C, V> {
     @Override
     public final void attach(C context, @NonNull V view) {
         this.isViewAttached = true;
-        this.mView = new WeakReference<V>(view);
-        this.mContext = new WeakReference<C>(context);
+        this.mView = new WeakReference<>(view);
+        this.mContext = new WeakReference<>(context);
         onViewAttached();
     }
 
