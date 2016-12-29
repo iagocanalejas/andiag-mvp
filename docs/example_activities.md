@@ -1,7 +1,7 @@
 # Example for Activity
   - Create your presenter
   ```java
-  public class CustomPresenter extends AIPresenter<Application, MyInterface> {
+  public class CustomPresenter extends AIPresenter<MyApplication, MyInterface> {
 
     /**
      * Recommended singleton implementation for presenters
