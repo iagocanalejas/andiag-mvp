@@ -21,12 +21,10 @@ Library to help developers build full MVP apps.
       - ``` getPresenter().onViewCreated(); ``` is called in your onViewCreated method
       - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
 
-You can user our **extension library** [AndIag-MVP-Utils](https://github.com/iagocanalejas/andiag-mvp-utils)
-
 # Usage Example for Activities
   1. Configure your gradle:
     
-    Add this lines your root-folder gradle
+    Add this lines your root-folder gradle:
     ```ruby
     allprojects {
       repositories {
@@ -35,12 +33,31 @@ You can user our **extension library** [AndIag-MVP-Utils](https://github.com/iag
       }
     }
     ```
-    And this to your module-folder gradle
+    And this to your module-folder gradle:
     ```ruby
     dependencies {
-      compile 'com.github.iagocanalejas:andiag-mvp:<VERSION>'
+      compile 'com.github.iagocanalejas:andiag-mvp:core:<VERSION>'
     }
     ```
+
+  We have also implemented a common library that contains [extensions](docs/COMMONS.md), if you want to use it just replace your andiag-mvp dependency with:
+    ```ruby
+    dependencies {
+      compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'
+    }
+    ```
+
+    If you already have a compatible version of [Butterknife](https://github.com/JakeWharton/butterknife) in your gradle file you can add this library like:
+    ```ruby
+    dependencies {
+      compile (compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'){
+          exclude group: 'com.jakewharton'
+      }
+    }
+    ```
+    **Current Butterknife Version in Library: 8.4.0**
+    Documentation for [commons](docs/COMMONS.md) is available [here](docs/COMMONS.md)
+
   2. Create your first presenter
   ```java
   public class CustomPresenter extends AIPresenter<Application, MainActivity> {
