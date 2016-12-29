@@ -13,6 +13,7 @@ public class ActivityMain extends AIActivity<CustomPresenter> {
     @Override
     public void onInitPresenter() {
         mPresenter = CustomPresenter.getInstance();
+        mPresenter.enableLogging();
     }
 
     @Override

@@ -9,7 +9,7 @@ Library to help developers build full MVP apps.
 # Usage
   - Create your presenters as ``` AIPresenter<C, V> ```:
       - C -> Your view context (Application or Context for Activities, Activities or Context for Fragmentes)
-      - V -> Your view interface
+      - V -> Your view interface should implement ``` AIDelegatedView ```
   - For Activities
       - Extend ``` AIActivity<YOUR_PRESENTER> ```
       - Override method ``` protected void initPresenter() ```
@@ -93,6 +93,7 @@ You can user our **extension library** [AndIag-MVP-Utils](https://github.com/iag
     @Override
     protected void initPresenter() {
         mPresenter = CustomPresenter.getInstance();
+        mPresenter.enableLogging(); // You can add this to see presenter logs
     }
 
     /*CALLBACKS FOR THE PRESENTER*/
@@ -101,8 +102,8 @@ You can user our **extension library** [AndIag-MVP-Utils](https://github.com/iag
   ```
   
 # Recomendations
-  - Use Presenters as Singletones
-  - Use AIPresenter< _ , CustomInterface> if you whant a more generic presenter
+  - Use Presenters as Singletons
+  - Use AIPresenter< _ , CustomInterface> if you want a more generic presenter
 
 # Pull Requests
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:

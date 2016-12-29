@@ -31,7 +31,7 @@ android {
 dependencies {
     androidTestCompile "com.android.support.test:runner:${project.androidSupportTestRunner}"
 
-    compile "com.android.support:support-v4:$supportLib"
+    compile "com.android.support:support-fragment:$supportLib"
     compile "com.android.support:appcompat-v7:$supportLib"
 
 }

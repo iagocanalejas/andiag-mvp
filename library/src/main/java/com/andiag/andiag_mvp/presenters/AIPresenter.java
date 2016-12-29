@@ -1,6 +1,7 @@
 package com.andiag.andiag_mvp.presenters;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.andiag.andiag_mvp.views.AIDelegatedView;
 
@@ -16,21 +17,45 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
     private WeakReference<V> mView;
     private WeakReference<C> mContext;
 
-    private boolean isViewAttached = false;
-    private boolean isViewCreated = false;
+    private boolean mViewAttached = false;
+    private boolean mViewCreated = false;
+    private boolean mLoggingEnabled = false;
 
     protected AIPresenter() {
     }
+
+    //region Logging
+
+    /**
+     * Enable logs
+     */
+    public void enableLogging() {
+        mLoggingEnabled = true;
+    }
+
+    /**
+     * Private util to log
+     *
+     * @param message logged
+     */
+    private void log(String message) {
+        if (mLoggingEnabled) {
+            Log.i(TAG, mView.getClass().getSimpleName() + message);
+        }
+    }
+
+    //endregion
 
     /**
      * {@link AIInterfacePresenter#attach}
      */
     @Override
     public final void attach(C context, @NonNull V view) {
-        this.isViewAttached = true;
+        this.mViewAttached = true;
         this.mView = new WeakReference<>(view);
         this.mContext = new WeakReference<>(context);
         onViewAttached();
+        log("Attached");
     }
 
     /**
@@ -38,10 +63,11 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final void detach() {
-        this.isViewAttached = false;
+        this.mViewAttached = false;
         this.mView = null;
         this.mContext = null;
         onViewDetached();
+        log("Detached");
     }
 
     /**
@@ -65,7 +91,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final boolean isViewAttached() {
-        return isViewAttached;
+        return mViewAttached;
     }
 
     /**
@@ -73,7 +99,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final boolean isViewCreated() {
-        return isViewCreated;
+        return mViewCreated;
     }
 
     /**
@@ -104,14 +130,16 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      * From now on you can call view methods
      */
     public void onViewCreated() {
-        isViewCreated = true;
+        log("View Created");
+        mViewCreated = true;
     }
 
     /**
      * Call this method from activity when view is destroyed.
      */
     public void onViewDestroyed() {
-        isViewCreated = false;
+        log("View Destroyed");
+        mViewCreated = false;
     }
 
 }

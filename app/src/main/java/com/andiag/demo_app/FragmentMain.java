@@ -18,6 +18,7 @@ public class FragmentMain extends AIFragment<CustomFragmentPresenter> {
     @Override
     public void onInitPresenter() {
         mPresenter = CustomFragmentPresenter.getInstance();
+        mPresenter.enableLogging();
     }
 
     @Nullable
