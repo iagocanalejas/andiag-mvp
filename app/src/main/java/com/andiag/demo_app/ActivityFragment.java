@@ -1,4 +1,4 @@
-package es.coru.andiag.andiag_mvp_demo;
+package com.andiag.demo_app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

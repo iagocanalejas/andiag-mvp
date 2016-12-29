@@ -1,10 +1,10 @@
-package es.coru.andiag.andiag_mvp.presenters;
+package com.andiag.andiag_mvp.presenters;
 
 import android.support.annotation.NonNull;
 
-import java.lang.ref.WeakReference;
+import com.andiag.andiag_mvp.views.AIDelegatedView;
 
-import es.coru.andiag.andiag_mvp.views.AIDelegatedView;
+import java.lang.ref.WeakReference;
 
 /**
  * Created by Canalejas on 17/12/2016.

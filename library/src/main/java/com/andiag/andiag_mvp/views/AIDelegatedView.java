@@ -1,4 +1,4 @@
-package es.coru.andiag.andiag_mvp.views;
+package com.andiag.andiag_mvp.views;
 
 /**
  * Created by Canalejas on 28/12/2016.

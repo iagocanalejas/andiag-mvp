@@ -1,6 +1,7 @@
-package es.coru.andiag.andiag_mvp.presenters;
+package com.andiag.andiag_mvp.presenters;
 
-import es.coru.andiag.andiag_mvp.views.AIDelegatedView;
+
+import com.andiag.andiag_mvp.views.AIDelegatedView;
 
 /**
  * Created by Canalejas on 17/12/2016.

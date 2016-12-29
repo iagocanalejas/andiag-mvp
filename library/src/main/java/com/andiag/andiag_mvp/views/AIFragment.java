@@ -1,4 +1,4 @@
-package es.coru.andiag.andiag_mvp.views;
+package com.andiag.andiag_mvp.views;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
+import com.andiag.andiag_mvp.presenters.AIPresenter;
 
 
 /**

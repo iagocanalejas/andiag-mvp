@@ -1,9 +1,9 @@
-package es.coru.andiag.andiag_mvp_demo;
+package com.andiag.demo_app;
 
 import android.app.Application;
 import android.widget.Toast;
 
-import es.coru.andiag.andiag_mvp.presenters.AIPresenter;
+import com.andiag.andiag_mvp.presenters.AIPresenter;
 
 
 /**

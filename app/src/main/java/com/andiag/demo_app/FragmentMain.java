@@ -1,4 +1,4 @@
-package es.coru.andiag.andiag_mvp_demo;
+package com.andiag.demo_app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import es.coru.andiag.andiag_mvp.views.AIFragment;
+import com.andiag.andiag_mvp.views.AIFragment;
 
 /**
  * Created by Canalejas on 29/12/2016.

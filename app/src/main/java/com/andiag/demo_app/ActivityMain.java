@@ -1,11 +1,11 @@
-package es.coru.andiag.andiag_mvp_demo;
+package com.andiag.demo_app;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import es.coru.andiag.andiag_mvp.views.AIActivity;
+import com.andiag.andiag_mvp.views.AIActivity;
 
 
 public class ActivityMain extends AIActivity<CustomPresenter> {
