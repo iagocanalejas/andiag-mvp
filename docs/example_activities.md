@@ -44,7 +44,7 @@
 
   }
   ```
-  - Use it in your view (Activity)
+  - Use it in your Activity
   ```java
   public class MainActivity extends AIActivity<CustomPresenter> implements MyInterface {
 
