@@ -2,29 +2,25 @@
 
 AndIag MVP Library
 =========
-EARLY VERSION. ALL HELP ARE GREATEFULL. 
-
 Library to help developers build full MVP apps.
 
 # Usage
-  - Create your presenters as ``` AIPresenter<C, V> ```:
+  - Create your presenters extending [AIPresenter](core/src/main/java/com/andiag/core/presenters/AIPresenter.java) or implementing [AIInterfacePresenter](core/src/main/java/com/andiag/core/presenters/AIInterfacePresenter.java)
       - C -> Your view context (Application or Context for Activities, Activities or Context for Fragmentes)
-      - V -> Your view interface should implement ``` AIDelegatedView ```
+      - V -> Your view interface should implement [AIDelegatedView](core/src/main/java/com/andiag/core/views/AIDelegatedView.java)
   - For Activities
-      - Extend ``` AIActivity<YOUR_PRESENTER> ```
-      - Override method ``` protected void initPresenter() ```
-      - ``` getPresenter().onViewCreated(); ``` is called in your onResume method
+      - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java)
+      - Override method ``` onInitPresenter() ```
+      - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onResume method
       - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singleton.
   - For Fragments
-      - Extend ``` AIFragment<YOUR_PRESENTER> ```
-      - Override method ``` protected void initPresenter() ```
-      - ``` getPresenter().onViewCreated(); ``` is called in your onViewCreated method
+      - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java)
+      - Override method ``` onInitPresenter() ```
+      - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onViewCreated method
       - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
 
-# Usage Example for Activities
-  1. Configure your gradle:
-    
-    Add this lines your root-folder gradle:
+# Configuration
+  - Add this lines your root-folder gradle:
     ```ruby
     allprojects {
       repositories {
@@ -40,14 +36,14 @@ Library to help developers build full MVP apps.
     }
     ```
 
-  We have also implemented a common library that contains [extensions](docs/COMMONS.md), if you want to use it just replace your andiag-mvp dependency with:
+  - We have also implemented a common library that contains [extensions](docs/COMMONS.md), if you want to use it just replace your andiag-mvp dependency with:
     ```ruby
     dependencies {
       compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'
     }
     ```
 
-    If you already have a compatible version of [Butterknife](https://github.com/JakeWharton/butterknife) in your gradle file you can add this library like:
+    If you already have a compatible version of [Butterknife](https://github.com/JakeWharton/butterknife) in your gradle file you can add an exclude configuration like:
     ```ruby
     dependencies {
       compile (compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'){
@@ -56,67 +52,12 @@ Library to help developers build full MVP apps.
     }
     ```
     **Current Butterknife Version in Library: 8.4.0**
+    
     Documentation for [commons](docs/COMMONS.md) is available [here](docs/COMMONS.md)
 
-  2. Create your first presenter
-  ```java
-  public class CustomPresenter extends AIPresenter<Application, MainActivity> {
-
-    /**
-     * Recommended singleton implementation for presenters
-     */
-    //region Singleton
-    private static CustomPresenter instance = null;
-
-    private CustomPresenter() {
-    }
-
-    public static CustomPresenter getInstance() {
-        if (instance == null) {
-            instance = new CustomPresenter();
-        }
-        return instance;
-    }
-    //endregion
-
-    /**
-     * Automatically called on presenter attach. VIEW MIGHT NOT BE CREATED JET
-     */
-    @Override
-    public void onViewAttached() {
-        Toast.makeText(getContext(), "Presenter On View Attached", Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Call from activity when view loading ends
-     */
-    @Override
-    public void onViewCreated() {
-        super.onViewCreated();
-        /**
-         * Once this method occurs {@link AIPresenter.isViewAttached} will return True.
-         * Use it from your callbacks
-         */
-    }
-
-    /*VIEW CALLBACKS*/
-
-  }
-  ```
-  3. Use it in your view (Activity)
-  ```java
-  public class MainActivity extends AIActivity<CustomPresenter> {
-
-    @Override
-    protected void initPresenter() {
-        mPresenter = CustomPresenter.getInstance();
-        mPresenter.enableLogging(); // You can add this to see presenter logs
-    }
-
-    /*CALLBACKS FOR THE PRESENTER*/
-
-  }
-  ```
+# Code Examples
+  - [Example for Activities](docs/example_activities.md)
+  - [Example for Fragments](docs/example_fragments.md)
   
 # Recomendations
   - Use Presenters as Singletons
