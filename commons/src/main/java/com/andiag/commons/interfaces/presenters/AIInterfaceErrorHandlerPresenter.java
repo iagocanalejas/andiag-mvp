@@ -1,6 +1,7 @@
-package com.andiag.commons.interfaces;
+package com.andiag.commons.interfaces.presenters;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
 /**
@@ -11,7 +12,7 @@ public interface AIInterfaceErrorHandlerPresenter {
 
     Context getContext();
 
-    void onLoadError(String message);
+    void onLoadError(@Nullable String message);
 
     void onLoadError(@StringRes int resId);
 
