@@ -32,12 +32,12 @@ public interface AIInterfacePresenter<C, V extends AIDelegatedView> {
     void detach();
 
     /**
-     * @return true if view is attached to presenter false otherwise
+     * @return true if view is attached to presenter, false otherwise
      */
     boolean isViewAttached();
 
     /**
-     * @return true if view is showing false otherwise
+     * @return true if view is showing, false otherwise
      */
     boolean isViewCreated();
 
