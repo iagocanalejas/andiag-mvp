@@ -86,6 +86,14 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
     }
 
     /**
+     * {@link AIInterfacePresenter#getViewState()}
+     */
+    @Override
+    public final ViewState getViewState() {
+        return mViewState;
+    }
+
+    /**
      * {@link AIInterfacePresenter#isViewAttached}
      */
     @Override

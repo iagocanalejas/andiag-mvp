@@ -19,6 +19,11 @@ public interface AIInterfacePresenter<C, V extends AIDelegatedView> {
     C getContext();
 
     /**
+     * @return presenter view state
+     */
+    ViewState getViewState();
+
+    /**
      * Add context and view to the presenter
      *
      * @param context new context {@link android.app.Application} {@link android.app.Activity} ...
