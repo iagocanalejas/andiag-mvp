@@ -19,6 +19,11 @@ public interface AIInterfacePresenter<C, V extends AIDelegatedView> {
     C getContext();
 
     /**
+     * @return presenter view state
+     */
+    ViewState getViewState();
+
+    /**
      * Add context and view to the presenter
      *
      * @param context new context {@link android.app.Application} {@link android.app.Activity} ...
@@ -32,12 +37,12 @@ public interface AIInterfacePresenter<C, V extends AIDelegatedView> {
     void detach();
 
     /**
-     * @return true if view is attached to presenter false otherwise
+     * @return true if view is attached to presenter, false otherwise
      */
     boolean isViewAttached();
 
     /**
-     * @return true if view is showing false otherwise
+     * @return true if view is showing, false otherwise
      */
     boolean isViewCreated();
 

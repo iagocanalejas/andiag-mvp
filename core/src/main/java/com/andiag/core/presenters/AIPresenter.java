@@ -17,8 +17,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
     private WeakReference<V> mView;
     private WeakReference<C> mContext;
 
-    private boolean mViewAttached = false;
-    private boolean mViewCreated = false;
+    private ViewState mViewState = ViewState.DETACHED;
     private boolean mLoggingEnabled = false;
 
     protected AIPresenter() {
@@ -51,9 +50,9 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final void attach(C context, @NonNull V view) {
-        this.mViewAttached = true;
         this.mView = new WeakReference<>(view);
         this.mContext = new WeakReference<>(context);
+        this.mViewState = ViewState.ATTACHED;
         onViewAttached();
         log("Attached");
     }
@@ -63,9 +62,9 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final void detach() {
-        this.mViewAttached = false;
         this.mView = null;
         this.mContext = null;
+        this.mViewState = ViewState.DETACHED;
         onViewDetached();
         log("Detached");
     }
@@ -87,11 +86,20 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
     }
 
     /**
+     * {@link AIInterfacePresenter#getViewState()}
+     */
+    @Override
+    public final ViewState getViewState() {
+        return mViewState;
+    }
+
+    /**
      * {@link AIInterfacePresenter#isViewAttached}
      */
     @Override
     public final boolean isViewAttached() {
-        return mViewAttached;
+        return mViewState == ViewState.ATTACHED
+                || mViewState == ViewState.CREATED;
     }
 
     /**
@@ -99,7 +107,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final boolean isViewCreated() {
-        return mViewCreated;
+        return mViewState == ViewState.CREATED;
     }
 
     /**
@@ -131,7 +139,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     public void onViewCreated() {
         log("View Created");
-        mViewCreated = true;
+        this.mViewState = ViewState.CREATED;
     }
 
     /**
@@ -139,7 +147,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     public void onViewDestroyed() {
         log("View Destroyed");
-        mViewCreated = false;
+        this.mViewState = ViewState.DESTROYED;
     }
 
 }
