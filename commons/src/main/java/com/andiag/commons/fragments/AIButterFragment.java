@@ -1,6 +1,7 @@
 package com.andiag.commons.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +21,14 @@ public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment
     private static final String EXTRA_LAYOUT = "extra_layout";
 
     Unbinder unbinder;
-    protected int mFragmentLayout;
+    @LayoutRes
+    protected Integer mFragmentLayout;
 
     public AIButterFragment() {
-        /**
-         * Avoid the use of this constructor. Use {@link AIButterFragment.getInstance} instead
-         */
     }
 
     /**
-     * Implement this to set layout res value in fragment
+     * {@link AIButterFragment#mFragmentLayout} should be initialize here
      */
     protected abstract void onInitLayout();
 
@@ -52,7 +51,11 @@ public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment
         if (savedInstanceState != null && savedInstanceState.containsKey(EXTRA_LAYOUT)) {
             mFragmentLayout = savedInstanceState.getInt(EXTRA_LAYOUT);
         }
-        // TODO check mFragmentLayout != null
+
+        if (mFragmentLayout == null) {
+            throw new IllegalStateException("Fragment Layout should have a valid value");
+        }
+
         View fragmentView = inflater.inflate(mFragmentLayout, container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
 
