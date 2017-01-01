@@ -10,12 +10,12 @@ Library to help developers build full MVP apps.
       - C -> Your view context (Application or Context for Activities, Activities or Context for Fragmentes)
       - V -> Your view interface should implement [AIDelegatedView](core/src/main/java/com/andiag/core/views/AIDelegatedView.java)
   - For Activities
-      - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java)
+      - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java) or [AICompatActivity](core/src/main/java/com/andiag/core/views/AICompatActivity.java)
       - Override method ``` onInitPresenter() ```
       - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onResume method
       - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singleton.
   - For Fragments
-      - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java)
+      - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java) or [AICompatFragment](core/src/main/java/com/andiag/core/views/AICompatFragment.java)
       - Override method ``` onInitPresenter() ```
       - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onViewCreated method
       - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
@@ -62,7 +62,6 @@ Library to help developers build full MVP apps.
   
 # Recomendations
   - Use Presenters as Singletons
-  - Use AIPresenter< _ , CustomInterface> if you want a more generic presenter
 
 # Pull Requests
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:

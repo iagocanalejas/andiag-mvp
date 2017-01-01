@@ -32,7 +32,7 @@ Group of common things we use to implement in all our apps using MVP.
   **Current Butterknife Version: 8.4.0**
   
 # Included Fragment Utils
-  - [AIButterFragment](commons/src/main/java/com/andiag/commons/fragments/AIButterFragment.java)
+  - [AIButterFragment](commons/src/main/java/com/andiag/commons/fragments/AIButterFragment.java) or [AICompatButterFragment](commons/src/main/java/com/andiag/commons/fragments/AICompatButterFragment.java)
   
     Frees you from the load of handle **Butterknife** binders on fragments.
     
