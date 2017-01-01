@@ -19,6 +19,7 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment impleme
     protected Context mParentContext;
     protected P mPresenter;
 
+    @SuppressWarnings("unchecked")
     @Override
     public void attachView() {
         mPresenter.attach(mParentContext, this);

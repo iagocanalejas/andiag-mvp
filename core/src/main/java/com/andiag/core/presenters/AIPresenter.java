@@ -1,5 +1,6 @@
 package com.andiag.core.presenters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -11,7 +12,7 @@ import java.lang.ref.WeakReference;
  * Created by Canalejas on 17/12/2016.
  * All presenters must extends this class or implements {@link AIInterfacePresenter}
  */
-public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInterfacePresenter<C, V> {
+public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> implements AIInterfacePresenter<C, V> {
     private final static String TAG = AIPresenter.class.getSimpleName();
 
     private WeakReference<V> mView;

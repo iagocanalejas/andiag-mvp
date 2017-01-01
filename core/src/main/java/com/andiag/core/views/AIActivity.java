@@ -21,6 +21,7 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
         mPresenter = null;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void attachView() {
         mPresenter.attach(getApplication(), this);
