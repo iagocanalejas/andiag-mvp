@@ -1,33 +1,30 @@
 package com.andiag.commons.fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.andiag.core.presenters.AIPresenter;
-import com.andiag.core.views.AIFragment;
+import com.andiag.core.views.AICompatFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by Canalejas on 01/01/2017.
- */
 
-@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment<P> {
+/**
+ * Created by Canalejas on 24/12/2016.
+ */
+public abstract class AICompatButterFragment<P extends AIPresenter> extends AICompatFragment<P> {
     private static final String EXTRA_LAYOUT = "extra_layout";
 
     Unbinder unbinder;
     @LayoutRes
     protected Integer mFragmentLayout;
 
-    public AIButterFragment() {
+    public AICompatButterFragment() {
     }
 
     /**

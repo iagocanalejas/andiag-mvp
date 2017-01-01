@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.andiag.core.views.AIFragment;
+import com.andiag.core.views.AICompatFragment;
 
 /**
  * Created by Canalejas on 29/12/2016.
  */
 
-public class FragmentMain extends AIFragment<CustomFragmentPresenter> {
+public class FragmentMain extends AICompatFragment<CustomFragmentPresenter> {
 
     @Override
     public void onInitPresenter() {

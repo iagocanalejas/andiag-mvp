@@ -1,16 +1,16 @@
 package com.andiag.core.views;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.core.presenters.AIPresenter;
 
-/**
- * Created by Canalejas on 01/01/2017.
- */
 
-public abstract class AIActivity<P extends AIPresenter> extends Activity implements AIDelegatedView {
+/**
+ * Created by Canalejas on 11/12/2016.
+ */
+public abstract class AICompatActivity<P extends AIPresenter> extends AppCompatActivity implements AIDelegatedView {
     private final static String TAG = AICompatActivity.class.getSimpleName();
 
     protected P mPresenter;

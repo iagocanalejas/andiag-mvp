@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.andiag.core.views.AIActivity;
+import com.andiag.core.views.AICompatActivity;
 
 
-public class ActivityMain extends AIActivity<CustomPresenter> {
+public class ActivityMain extends AICompatActivity<CustomPresenter> {
 
     @Override
     public void onInitPresenter() {

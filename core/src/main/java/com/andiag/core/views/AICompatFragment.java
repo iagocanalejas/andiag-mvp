@@ -1,21 +1,19 @@
 package com.andiag.core.views;
 
-import android.app.Fragment;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.andiag.core.presenters.AIPresenter;
 
+
 /**
- * Created by Canalejas on 01/01/2017.
+ * Created by Canalejas on 11/12/2016.
  */
 
-@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-public abstract class AIFragment<P extends AIPresenter> extends Fragment implements AIDelegatedView {
+public abstract class AICompatFragment<P extends AIPresenter> extends Fragment implements AIDelegatedView {
     private final static String TAG = AICompatFragment.class.getSimpleName();
 
     protected Context mParentContext;
