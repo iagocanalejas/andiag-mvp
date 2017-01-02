@@ -11,7 +11,7 @@ import com.andiag.core.presenters.AIPresenter;
  */
 
 public abstract class AIActivity<P extends AIPresenter> extends Activity implements AIDelegatedView {
-    private final static String TAG = AICompatActivity.class.getSimpleName();
+    private final static String TAG = AIActivity.class.getSimpleName();
 
     protected P mPresenter;
 

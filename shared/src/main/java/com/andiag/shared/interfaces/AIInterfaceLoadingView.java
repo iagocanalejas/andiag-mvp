@@ -1,4 +1,4 @@
-package com.andiag.commons.interfaces;
+package com.andiag.shared.interfaces;
 
 import android.support.annotation.StringRes;
 

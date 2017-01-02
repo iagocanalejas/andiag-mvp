@@ -1,4 +1,4 @@
-package com.andiag.commons.authentication;
+package com.andiag.commons.compat.authentication;
 
 import android.Manifest;
 import android.accounts.Account;

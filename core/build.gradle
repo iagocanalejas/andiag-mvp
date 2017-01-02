@@ -15,7 +15,6 @@ android {
         versionCode project.libraryCode
         versionName project.libraryName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
 
     packagingOptions {

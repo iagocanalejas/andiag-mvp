@@ -16,7 +16,7 @@ import com.andiag.core.presenters.AIPresenter;
 
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 public abstract class AIFragment<P extends AIPresenter> extends Fragment implements AIDelegatedView {
-    private final static String TAG = AICompatFragment.class.getSimpleName();
+    private final static String TAG = AIFragment.class.getSimpleName();
 
     protected Context mParentContext;
     protected P mPresenter;

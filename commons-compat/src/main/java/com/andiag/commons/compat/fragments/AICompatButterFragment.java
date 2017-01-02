@@ -1,4 +1,4 @@
-package com.andiag.commons.fragments;
+package com.andiag.commons.compat.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

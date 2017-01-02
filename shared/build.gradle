@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'com.github.dcendents.android-maven'
 
 apply from: '../quality/quality.gradle'
@@ -29,11 +28,5 @@ android {
 }
 
 dependencies {
-    androidTestCompile "com.android.support.test:runner:${project.androidSupportTestRunner}"
-
-    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknife"
-
-    compile "com.jakewharton:butterknife:$project.butterknife"
-    compile project(':core')
-    compile project(':shared')
+    compile "com.android.support:support-annotations:$supportLib"
 }
