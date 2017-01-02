@@ -18,7 +18,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     private WeakReference<V> mView;
     private WeakReference<C> mContext;
 
-    private ViewState mViewState = ViewState.DETACHED;
+    protected ViewState mViewState = ViewState.DETACHED;
     private boolean mLoggingEnabled = false;
 
     protected AIPresenter() {
@@ -34,16 +34,25 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * Private util to log
+     * Util to easy logInfo in presenters
      *
      * @param message logged
      */
-    private void log(String message) {
-        if (mLoggingEnabled) {
-            Log.i(TAG, mView.getClass().getSimpleName() + message);
-        }
+    protected void logInfo(String message) {
+        logInfo(TAG, message);
     }
 
+    /**
+     * Util to easy logInfo in presenters
+     *
+     * @param tag     log tag
+     * @param message logged
+     */
+    protected void logInfo(String tag, String message) {
+        if (mLoggingEnabled) {
+            Log.i(tag, mView.getClass().getSimpleName() + message);
+        }
+    }
     //endregion
 
     /**
@@ -55,7 +64,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
         this.mContext = new WeakReference<>(context);
         this.mViewState = ViewState.ATTACHED;
         onViewAttached();
-        log("Attached");
+        logInfo("Attached");
     }
 
     /**
@@ -67,7 +76,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
         this.mContext = null;
         this.mViewState = ViewState.DETACHED;
         onViewDetached();
-        log("Detached");
+        logInfo("Detached");
     }
 
     /**
@@ -139,7 +148,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
      * From now on you can call view methods
      */
     public void onViewCreated() {
-        log("View Created");
+        logInfo("View Created");
         this.mViewState = ViewState.CREATED;
     }
 
@@ -147,7 +156,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
      * Call this method from view when it is destroyed.
      */
     public void onViewDestroyed() {
-        log("View Destroyed");
+        logInfo("View Destroyed");
         this.mViewState = ViewState.DESTROYED;
     }
 
