@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'com.github.dcendents.android-maven'
 
 apply from: '../quality/quality.gradle'
@@ -11,7 +10,7 @@ android {
     buildToolsVersion project.buildTools
 
     defaultConfig {
-        minSdkVersion project.minNoCompatSdk
+        minSdkVersion project.minSdk
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
@@ -28,9 +27,7 @@ android {
 }
 
 dependencies {
-    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknife"
-
-    compile "com.jakewharton:butterknife:$project.butterknife"
-    compile project(path: ':shared')
-    compile project(path: ':core')
+    compile "com.android.support:support-fragment:$supportLib"
+    compile "com.android.support:appcompat-v7:$supportLib"
+    compile project(path: ':shared-core')
 }

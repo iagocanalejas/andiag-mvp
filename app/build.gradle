@@ -1,19 +1,21 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-
-apply from: '../quality/quality.gradle'
-
-group = 'com.github.iagocanalejas'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion project.compiledSdk
     buildToolsVersion project.buildTools
-
     defaultConfig {
-        minSdkVersion project.minNoCompatSdk
+        applicationId "es.coru.andiag.andiag_mvp_demo"
+        minSdkVersion project.minSdk
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
     }
 
     packagingOptions {
@@ -27,5 +29,5 @@ android {
 }
 
 dependencies {
-    compile project(path: ':shared-core')
+    compile project(path: ':core-compat')
 }

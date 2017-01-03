@@ -4,8 +4,8 @@ import android.Manifest;
 import android.accounts.Account;
 import android.os.Build;
 
-import com.andiag.core.presenters.AIPresenter;
-import com.andiag.core.views.AIDelegatedView;
+import com.andiag.shared.core.presenters.AIPresenter;
+import com.andiag.shared.core.views.AIDelegatedView;
 
 import java.util.ArrayList;
 

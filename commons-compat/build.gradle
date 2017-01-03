@@ -15,7 +15,6 @@ android {
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     packagingOptions {
@@ -29,11 +28,9 @@ android {
 }
 
 dependencies {
-    androidTestCompile "com.android.support.test:runner:${project.androidSupportTestRunner}"
-
     annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknife"
 
     compile "com.jakewharton:butterknife:$project.butterknife"
-    compile project(':core')
-    compile project(':shared')
+    compile project(path: ':shared')
+    compile project(path: ':core-compat')
 }
