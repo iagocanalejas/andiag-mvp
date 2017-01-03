@@ -1,17 +1,14 @@
-package com.andiag.commons.compat.authentication;
+package com.andiag.commons.authentication;
 
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.shared.core.presenters.AIPresenter;
 import com.andiag.shared.core.presenters.ViewState;
@@ -22,12 +19,11 @@ import java.util.Arrays;
 /**
  * Created by Canalejas on 02/01/2017.
  */
-@RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public abstract class AIPresenterAuthentication<C extends Context, V extends AppCompatActivity & AIDelegatedAuthenticationView> extends AIPresenter<C, V> {
+public abstract class AIPresenterAuthentication<C extends Context, V extends Activity & AIDelegatedAuthenticationView> extends AIPresenter<C, V> {
     private static final String TAG = AIPresenterAuthentication.class.getSimpleName();
 
     /**
-     * Name given to the account in the {@link android.content.SharedPreferences} file
+     * Name given to the account in the {@link SharedPreferences} file
      */
     private static final String SAVED_ACCOUNT = "AndIag:-AppAccount";
 
@@ -103,8 +99,7 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
         if (mAccountType == null) {
             throw new IllegalStateException("Account Type might not have been initialized");
         }
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED
-                && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (getView().checkSelfPermission(Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
             getView().onAccountPermissionRequested();
             return null;
         }
@@ -126,13 +121,24 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
         return null;
     }
 
+    /**
+     * Marc account as current active
+     *
+     * @param accountName current account name
+     */
     public void onAccountSelected(String accountName) {
         onAccountSelected(getAccountByName(accountName));
     }
 
+    /**
+     * Marc account as current active
+     *
+     * @param account current
+     */
     public void onAccountSelected(Account account) {
         if (account != null) {
             mAccount = account;
+            mPreferences.edit().putString(SAVED_ACCOUNT, mAccount.name).apply();
         }
     }
 
@@ -143,13 +149,8 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
      * @return {@link Intent} to new activity picker
      */
     public Intent newAccountSelectorIntent(ArrayList<Account> accounts) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return AccountManager.newChooseAccountIntent(null, accounts,
-                    new String[]{mAccountType}, null, null,
-                    null, null);
-        }
         return AccountManager.newChooseAccountIntent(null, accounts,
-                new String[]{mAccountType}, false, null, null,
+                new String[]{mAccountType}, null, null,
                 null, null);
     }
 
@@ -183,15 +184,17 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
                 getView().startAccountSelectorActivity(appAccounts);
             } else if (appAccounts.size() == 1) {
                 logInfo(TAG, "Selected Unique Account");
-                mAccount = appAccounts.get(0);
-                mPreferences.edit().putString(SAVED_ACCOUNT, mAccount.name).apply();
+                onAccountSelected(appAccounts.get(0));
             } else {
                 logInfo(TAG, "No Account, Login Intent Launched");
-                getView().startAuthenticationActivity();
+                getView().startAuthenticationIntent();
             }
         }
     }
 
+    /**
+     * Handles permission request failure
+     */
     public abstract void onGetAccountsPermissionRefused();
 
 }

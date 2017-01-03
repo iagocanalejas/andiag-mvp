@@ -7,7 +7,7 @@ ext {
     buildTools = '25.0.2'
     supportLib = '25.1.0'
     minSdk = 9
-    minNoCompatSdk = 21
+    minNoCompatSdk = 25
 
     androidSupportTestRunner = '0.5'
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by Canalejas on 02/01/2017.
  */
 
-public interface AIDelegatedAuthenticationVIew extends AIDelegatedView {
+public interface AIDelegatedAuthenticationView extends AIDelegatedView {
     void startAccountSelectorActivity(ArrayList<Account> appAccounts);
 
     void startAuthenticationActivity();
