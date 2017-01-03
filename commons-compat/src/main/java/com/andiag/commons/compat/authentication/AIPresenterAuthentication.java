@@ -126,13 +126,24 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
         return null;
     }
 
+    /**
+     * Marc account as current active
+     *
+     * @param accountName current account name
+     */
     public void onAccountSelected(String accountName) {
         onAccountSelected(getAccountByName(accountName));
     }
 
+    /**
+     * Marc account as current active
+     *
+     * @param account current
+     */
     public void onAccountSelected(Account account) {
         if (account != null) {
             mAccount = account;
+            mPreferences.edit().putString(SAVED_ACCOUNT, mAccount.name).apply();
         }
     }
 
@@ -151,6 +162,7 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
         return AccountManager.newChooseAccountIntent(null, accounts,
                 new String[]{mAccountType}, false, null, null,
                 null, null);
+        // TODO required implementation for 9 < Build.VERSION.SDK_INT > 12
     }
 
     /**
@@ -183,15 +195,17 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
                 getView().startAccountSelectorActivity(appAccounts);
             } else if (appAccounts.size() == 1) {
                 logInfo(TAG, "Selected Unique Account");
-                mAccount = appAccounts.get(0);
-                mPreferences.edit().putString(SAVED_ACCOUNT, mAccount.name).apply();
+                onAccountSelected(appAccounts.get(0));
             } else {
                 logInfo(TAG, "No Account, Login Intent Launched");
-                getView().startAuthenticationActivity();
+                getView().startAuthenticationIntent();
             }
         }
     }
 
+    /**
+     * Handles permission request failure
+     */
     public abstract void onGetAccountsPermissionRefused();
 
 }

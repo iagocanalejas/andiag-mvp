@@ -82,7 +82,7 @@ public abstract class AIActivityAuthentication<P extends AIPresenterAuthenticati
      * {@link AIDelegatedAuthenticationView#startAuthenticationIntent}
      */
     @Override
-    public abstract void startAuthenticationActivity();
+    public abstract void startAuthenticationIntent();
 
     /**
      * {@link AIDelegatedAuthenticationView#onAccountPermissionRequested}
