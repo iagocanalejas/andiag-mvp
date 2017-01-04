@@ -9,12 +9,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.shared.core.presenters.AIPresenter;
 import com.andiag.shared.core.presenters.ViewState;
+import com.google.android.gms.common.AccountPicker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,6 @@ import java.util.Arrays;
 /**
  * Created by Canalejas on 02/01/2017.
  */
-@RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public abstract class AIPresenterAuthentication<C extends Context, V extends AppCompatActivity & AIDelegatedAuthenticationView> extends AIPresenter<C, V> {
     private static final String TAG = AIPresenterAuthentication.class.getSimpleName();
 
@@ -34,6 +33,7 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
     protected Account mAccount;
     protected AccountManager mAccountManager;
     protected String mAccountType;
+    protected String mAccountToken;
     protected SharedPreferences mPreferences;
 
     public final void attach(C context, @NonNull V view, @NonNull AccountManager accountManager) {
@@ -74,6 +74,18 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
             throw new IllegalStateException("Can't perform this action while view is showing");
         }
         mAccountType = accountType;
+    }
+
+    /**
+     * Set the type of token this presenter will take care off
+     *
+     * @param accountToken given token type
+     */
+    public final void setAccountToken(String accountToken) {
+        if (mViewState.equals(ViewState.CREATED)) {
+            throw new IllegalStateException("Can't perform this action while view is showing");
+        }
+        mAccountToken = accountToken;
     }
 
     /**
@@ -158,11 +170,15 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
             return AccountManager.newChooseAccountIntent(null, accounts,
                     new String[]{mAccountType}, null, null,
                     null, null);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            return AccountManager.newChooseAccountIntent(null, accounts,
+                    new String[]{mAccountType}, false, null, null,
+                    null, null);
+        } else {
+            return AccountPicker.newChooseAccountIntent(null, accounts,
+                    new String[]{mAccountType}, false, null,
+                    mAccountToken, null, null);
         }
-        return AccountManager.newChooseAccountIntent(null, accounts,
-                new String[]{mAccountType}, false, null, null,
-                null, null);
-        // TODO required implementation for 9 < Build.VERSION.SDK_INT > 12
     }
 
     /**

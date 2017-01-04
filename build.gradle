@@ -6,6 +6,7 @@ ext {
     compiledSdk = 25
     buildTools = '25.0.2'
     supportLib = '25.1.0'
+    gms = '10.0.1'
     minSdk = 9
     minNoCompatSdk = 25
 

@@ -30,6 +30,8 @@ android {
 dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknife"
 
+    compile "com.google.android.gms:play-services-base:$gms"
+
     compile "com.jakewharton:butterknife:$project.butterknife"
     compile project(path: ':shared')
     compile project(path: ':core-compat')
