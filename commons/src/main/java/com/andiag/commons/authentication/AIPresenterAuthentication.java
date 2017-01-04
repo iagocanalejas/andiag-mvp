@@ -149,7 +149,7 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends Act
      * @return {@link Intent} to new activity picker
      */
     public Intent newAccountSelectorIntent(ArrayList<Account> accounts) {
-        return AccountManager.newChooseAccountIntent(null, accounts,
+        return AccountManager.newChooseAccountIntent(mAccount, accounts,
                 new String[]{mAccountType}, null, null,
                 null, null);
     }

@@ -167,15 +167,15 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
      */
     public Intent newAccountSelectorIntent(ArrayList<Account> accounts) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return AccountManager.newChooseAccountIntent(null, accounts,
+            return AccountManager.newChooseAccountIntent(mAccount, accounts,
                     new String[]{mAccountType}, null, null,
                     null, null);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            return AccountManager.newChooseAccountIntent(null, accounts,
+            return AccountManager.newChooseAccountIntent(mAccount, accounts,
                     new String[]{mAccountType}, false, null, null,
                     null, null);
         } else {
-            return AccountPicker.newChooseAccountIntent(null, accounts,
+            return AccountPicker.newChooseAccountIntent(mAccount, accounts,
                     new String[]{mAccountType}, false, null,
                     mAccountToken, null, null);
         }
