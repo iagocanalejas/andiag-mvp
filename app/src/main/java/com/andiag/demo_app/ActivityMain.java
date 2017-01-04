@@ -2,41 +2,28 @@ package com.andiag.demo_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
-import com.andiag.core.compat.views.AIActivity;
+import com.andiag.demo_app.simple.ActivityFragment;
 
 
-public class ActivityMain extends AIActivity<CustomPresenter> {
+public class ActivityMain extends AppCompatActivity {
 
-    @Override
-    public void onInitPresenter() {
-        mPresenter = CustomPresenter.getInstance();
-        mPresenter.enableLogging();
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.fragment_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.simple_example).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ActivityMain.this, ActivityFragment.class));
             }
         });
 
-    }
-
-    /**
-     * Example of callback from the presenter.
-     *
-     * @param text showed in toast
-     */
-    public void presenterCallback(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
 }

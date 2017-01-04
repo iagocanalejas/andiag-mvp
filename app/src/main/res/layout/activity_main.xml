@@ -8,13 +8,31 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
+                android:gravity="center"
                 tools:context="com.andiag.demo_app.ActivityMain">
 
     <Button
-        android:id="@+id/fragment_button"
-        android:text="OPEN FRAGMENT"
+        android:id="@+id/simple_example"
+        android:text="Simple Example"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/butterknife_example"
+        android:text="Butterknife Example"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_below="@id/simple_example"/>
+
+    <Button
+        android:id="@+id/authentication_example"
+        android:text="Authentication Example"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/butterknife_example"/>
+
+
 </RelativeLayout>

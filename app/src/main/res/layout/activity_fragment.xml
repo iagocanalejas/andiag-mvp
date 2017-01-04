@@ -3,6 +3,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/button_launch_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Launch Fragment"/>
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"

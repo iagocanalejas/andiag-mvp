@@ -1,4 +1,4 @@
-package com.andiag.demo_app;
+package com.andiag.demo_app.simple;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.andiag.core.compat.views.AIFragment;
+import com.andiag.demo_app.R;
 
 
 /**
@@ -35,5 +36,13 @@ public class FragmentMain extends AIFragment<CustomFragmentPresenter> {
      */
     public void presenterCallback(String text) {
         Toast.makeText(mParentContext, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public void viewAttached() {
+        Toast.makeText(mParentContext, "Fragment Attached to Presenter", Toast.LENGTH_SHORT).show();
+    }
+
+    public void viewCreated() {
+        Toast.makeText(mParentContext, "Fragment View Created", Toast.LENGTH_SHORT).show();
     }
 }

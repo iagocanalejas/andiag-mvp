@@ -1,7 +1,8 @@
-package com.andiag.demo_app;
+package com.andiag.demo_app.simple;
 
-import android.widget.Toast;
+import android.os.Handler;
 
+import com.andiag.demo_app.ActivityMain;
 import com.andiag.shared.core.presenters.AIPresenter;
 
 
@@ -32,24 +33,30 @@ public class CustomFragmentPresenter extends AIPresenter<ActivityMain, FragmentM
      */
     @Override
     public void onViewAttached() {
-        Toast.makeText(getContext(), "Presenter On Fragment View Attached", Toast.LENGTH_SHORT).show();
+        getView().viewAttached();
     }
 
     /**
-     * Call from activity when view loading ends
+     * Once this method occurs {@link AIPresenter#isViewAttached} will return True.
+     * Use it from your callbacks
      */
     @Override
     public void onViewCreated() {
         super.onViewCreated();
-        callback();
-        /**
-         * Once this method occurs {@link AIPresenter.isViewAttached} will return True.
-         * Use it from your callbacks
-         */
+        getView().viewCreated();
+        delayedCallback();
     }
 
-    private void callback() {
-        getView().presenterCallback("Fragment callback");
+
+    private void delayedCallback() {
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                getView().presenterCallback("Delayed Callback");
+            }
+
+        }, 2000);
     }
 
 }
