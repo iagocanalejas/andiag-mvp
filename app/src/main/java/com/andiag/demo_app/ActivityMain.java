@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.andiag.demo_app.simple.ActivityFragment;
+import com.andiag.demo_app.butterknife.BActivity;
+import com.andiag.demo_app.simple.SimpleActivity;
 
 
 public class ActivityMain extends AppCompatActivity {
@@ -20,7 +21,14 @@ public class ActivityMain extends AppCompatActivity {
         findViewById(R.id.simple_example).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ActivityMain.this, ActivityFragment.class));
+                startActivity(new Intent(ActivityMain.this, SimpleActivity.class));
+            }
+        });
+
+        findViewById(R.id.butterknife_example).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityMain.this, BActivity.class));
             }
         });
 

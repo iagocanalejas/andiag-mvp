@@ -16,10 +16,6 @@ android {
         versionName project.libraryName
     }
 
-    buildTypes {
-        debug {}
-    }
-
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
@@ -31,8 +27,8 @@ android {
 }
 
 dependencies {
-    debugCompile "com.google.android.gms:play-services-base:$gms"
-    debugCompile "com.jakewharton:butterknife:$project.butterknife"
+    compile "com.google.android.gms:play-services-base:$gms"
+    compile "com.jakewharton:butterknife:$project.butterknife"
 
     //Release Dependencies
     compile project(path: ':shared')

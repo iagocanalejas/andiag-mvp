@@ -9,24 +9,29 @@ import android.widget.Toast;
 
 import com.andiag.core.compat.views.AIFragment;
 import com.andiag.demo_app.R;
+import com.andiag.demo_app.commons.CustomInterface;
+import com.andiag.demo_app.commons.CustomPresenter;
 
 
 /**
  * Created by Canalejas on 29/12/2016.
  */
 
-public class FragmentMain extends AIFragment<CustomFragmentPresenter> {
+public class SimpleFragment extends AIFragment<CustomPresenter> implements CustomInterface {
 
     @Override
     public void onInitPresenter() {
-        mPresenter = CustomFragmentPresenter.getInstance();
+        /**
+         * It's recommended to use a different presenter for each view
+         */
+        mPresenter = CustomPresenter.getInstance();
         mPresenter.enableLogging();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_simple, container, false);
     }
 
     /**
@@ -34,14 +39,17 @@ public class FragmentMain extends AIFragment<CustomFragmentPresenter> {
      *
      * @param text showed in toast
      */
+    @Override
     public void presenterCallback(String text) {
         Toast.makeText(mParentContext, text, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
     public void viewAttached() {
         Toast.makeText(mParentContext, "Fragment Attached to Presenter", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
     public void viewCreated() {
         Toast.makeText(mParentContext, "Fragment View Created", Toast.LENGTH_SHORT).show();
     }

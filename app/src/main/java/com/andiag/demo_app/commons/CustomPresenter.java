@@ -1,28 +1,28 @@
-package com.andiag.demo_app.simple;
+package com.andiag.demo_app.commons;
 
+import android.app.Application;
 import android.os.Handler;
 
-import com.andiag.demo_app.ActivityMain;
 import com.andiag.shared.core.presenters.AIPresenter;
 
 
 /**
  * Created by Iago on 24/12/2016.
  */
-public class CustomFragmentPresenter extends AIPresenter<ActivityMain, FragmentMain> {
+public class CustomPresenter extends AIPresenter<Application, CustomInterface> {
 
     /**
      * Recommended singleton implementation for presenters
      */
     //region Singleton
-    private static CustomFragmentPresenter instance = null;
+    private static CustomPresenter instance = null;
 
-    private CustomFragmentPresenter() {
+    private CustomPresenter() {
     }
 
-    public static CustomFragmentPresenter getInstance() {
+    public static CustomPresenter getInstance() {
         if (instance == null) {
-            instance = new CustomFragmentPresenter();
+            instance = new CustomPresenter();
         }
         return instance;
     }

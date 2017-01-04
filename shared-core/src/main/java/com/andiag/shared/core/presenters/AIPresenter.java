@@ -73,8 +73,6 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     @Override
     public final void detach() {
         logInfo("Detached");
-        this.mView = null;
-        this.mContext = null;
         this.mViewState = ViewState.DETACHED;
         onViewDetached();
     }

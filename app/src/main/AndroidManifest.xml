@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.andiag.demo_app.simple.ActivityFragment"/>
+        <activity android:name="com.andiag.demo_app.simple.SimpleActivity"/>
+        <activity android:name="com.andiag.demo_app.butterknife.BActivity"/>
 
     </application>
 

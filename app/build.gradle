@@ -33,5 +33,5 @@ dependencies {
 
     compile 'com.jakewharton:butterknife:8.4.0'
 
-    compile project(path: ':core-compat')
+    compile project(path: ':commons-compat')
 }
