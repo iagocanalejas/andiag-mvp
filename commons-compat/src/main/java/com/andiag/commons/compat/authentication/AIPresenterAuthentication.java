@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.andiag.shared.commons.authentication.AIDelegatedAuthenticationView;
 import com.andiag.shared.core.presenters.AIPresenter;
 import com.andiag.shared.core.presenters.ViewState;
 import com.google.android.gms.common.AccountPicker;

@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
+import com.andiag.shared.commons.authentication.AIDelegatedAuthenticationView;
 import com.andiag.shared.core.presenters.AIPresenter;
 import com.andiag.shared.core.presenters.ViewState;
 

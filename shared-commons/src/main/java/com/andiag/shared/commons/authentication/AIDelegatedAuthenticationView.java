@@ -1,4 +1,4 @@
-package com.andiag.commons.compat.authentication;
+package com.andiag.shared.commons.authentication;
 
 import android.Manifest;
 import android.accounts.Account;
@@ -17,7 +17,7 @@ public interface AIDelegatedAuthenticationView extends AIDelegatedView {
     /**
      * Launch a default account chooser
      *
-     * @param appAccounts list of account matching {@link AIPresenterAuthentication#mAccountType}
+     * @param appAccounts list of account matching your account type
      */
     void startAccountSelectorActivity(ArrayList<Account> appAccounts);
 

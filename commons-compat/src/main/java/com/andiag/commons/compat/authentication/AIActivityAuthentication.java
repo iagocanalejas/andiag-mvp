@@ -7,17 +7,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.core.compat.views.AIActivity;
+import com.andiag.shared.commons.authentication.AIDelegatedAuthenticationView;
 
 import java.util.ArrayList;
 
 /**
  * Created by Canalejas on 02/01/2017.
  */
-@RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public abstract class AIActivityAuthentication<P extends AIPresenterAuthentication> extends AIActivity<P> implements AIDelegatedAuthenticationView {
     private static final String TAG = AIActivityAuthentication.class.getSimpleName();
 

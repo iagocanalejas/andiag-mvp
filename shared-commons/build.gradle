@@ -1,23 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 apply from: '../quality/quality.gradle'
-
-group = 'com.github.iagocanalejas'
 
 android {
     compileSdkVersion project.compiledSdk
     buildToolsVersion project.buildTools
 
     defaultConfig {
-        minSdkVersion project.minNoCompatSdk
+        minSdkVersion project.minSdk
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
-    }
-
-    buildTypes {
-        debug {}
     }
 
     packagingOptions {
@@ -31,10 +24,6 @@ android {
 }
 
 dependencies {
-    debugCompile "com.jakewharton:butterknife:$project.butterknife"
-
-    //Release Dependencies
-    compile project(path: ':shared')
-    compile project(path: ':core')
-    compile project(path: ':shared-commons')
+    compile "com.android.support:support-annotations:$supportLib"
+    compile project(path: ':shared-core')
 }

@@ -1,1 +1,1 @@
-include ':app', ':core', ':commons-compat', ':shared', ':shared-core', ':core-compat', ':commons'
+include ':app', ':core', ':commons-compat', ':shared', ':shared-core', ':core-compat', ':commons', ':shared-commons'

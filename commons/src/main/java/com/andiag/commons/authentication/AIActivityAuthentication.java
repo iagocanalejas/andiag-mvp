@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
 import com.andiag.core.views.AIActivity;
+import com.andiag.shared.commons.authentication.AIDelegatedAuthenticationView;
 
 import java.util.ArrayList;
 
