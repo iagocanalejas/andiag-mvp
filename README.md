@@ -1,21 +1,22 @@
 [![API](https://img.shields.io/badge/API-9%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=9)
 [![](https://jitpack.io/v/iagocanalejas/andiag-mvp.svg)](https://jitpack.io/#iagocanalejas/andiag-mvp)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-andiag--mvp-brightgreen.svg?style=flat)]()
 
 AndIag MVP Library
 =========
 Library to help developers build full MVP apps.
 
 # Usage
-  - Create your presenters extending [AIPresenter](core/src/main/java/com/andiag/core/presenters/AIPresenter.java) or implementing [AIInterfacePresenter](core/src/main/java/com/andiag/core/presenters/AIInterfacePresenter.java)
+  - Create your presenters extending [AIPresenter](shared-core/src/main/java/com/andiag/shared/core/presenters/AIPresenter.java) or implementing [AIInterfacePresenter](shared-core/src/main/java/com/andiag/shared/core/presenters/AIInterfacePresenter.java)
       - C -> Your view context (Application or Context for Activities, Activities or Context for Fragmentes)
-      - V -> Your view interface should implement [AIDelegatedView](core/src/main/java/com/andiag/core/views/AIDelegatedView.java)
+      - V -> Your view interface should implement [AIDelegatedView](shared-core/src/main/java/com/andiag/shared/core/views/AIDelegatedView.java)
   - For Activities
-      - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java) or [AICompatActivity](core/src/main/java/com/andiag/core/views/AICompatActivity.java)
+      - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java)
       - Override method ``` onInitPresenter() ```
       - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onResume method
       - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singleton.
   - For Fragments
-      - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java) or [AICompatFragment](core/src/main/java/com/andiag/core/views/AICompatFragment.java)
+      - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java)
       - Override method ``` onInitPresenter() ```
       - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onViewCreated method
       - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
@@ -53,6 +54,7 @@ Library to help developers build full MVP apps.
   
 # Recomendations
   - Use Presenters as Singletons
+  - Use a different Presenter for each purpose
 
 # Pull Requests
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:

@@ -1,4 +1,6 @@
+[![API](https://img.shields.io/badge/API-9%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=9)
 [![](https://jitpack.io/v/iagocanalejas/andiag-mvp.svg)](https://jitpack.io/#iagocanalejas/andiag-mvp)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-andiag--mvp-brightgreen.svg?style=flat)]()
 
 AndIag MVP Commons Library
 =========
@@ -22,10 +24,10 @@ Group of common things we use to implement in all our apps using MVP.
   ```
 
 # Included Activities Utils
-  - [AIAuthenticationActivity]()
+  - [AIAuthenticationActivity](commons/src/main/java/com/andiag/commons/authentication/AIActivityAuthentication.java)
 
 # Included Presenters Utils
-  - [AIAuthenticationPresenter]()
+  - [AIAuthenticationPresenter](commons/src/main/java/com/andiag/commons/authentication/AIPresenterAuthentication.java)
 
 # Included Fragment Utils
   - [AIButterFragment](commons/src/main/java/com/andiag/commons/fragments/AIButterFragment.java)
@@ -34,13 +36,15 @@ Group of common things we use to implement in all our apps using MVP.
     
     ```java
     @Override
-    protected void initLayout(){
+    protected void onInitLayout(){
       mFragmentLayout = R.layout.<YOUR_FRAGMENT_LAYOUT>
     }
     ```
+
+    **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/butterknife/)**
     
 # Included interfaces
-  - [AIInterfaceErrorHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceErrorHandlerPresenter.java) When data load error-handlers are needed
+  - [AIInterfaceErrorHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceErrorHandlerPresenter.java) When error-handlers are needed for data load
   
   - [AIInterfaceLoaderHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceLoaderHandlerPresenter.java) When you want also to handle data load success
   

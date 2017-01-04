@@ -47,7 +47,7 @@
   public class MainActivity extends AIActivity<CustomPresenter> implements MyInterface {
 
     @Override
-    protected void initPresenter() {
+    protected void inInitPresenter() {
         mPresenter = CustomPresenter.getInstance();
         mPresenter.enableLogging(); // You can add this to see presenter logs
     }
@@ -57,4 +57,4 @@
   }
   ```
   
-  **You can see a working example in the [demo-app](demo-app/src/main/java/com/andiag/demo_app/)**
+  **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/simple/)**

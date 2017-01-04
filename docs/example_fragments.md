@@ -63,4 +63,4 @@
   }
   ```
   
-  **You can see a working example in the [demo-app](demo-app/src/main/java/com/andiag/demo_app/)**
+  **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/simple/)**
