@@ -20,39 +20,30 @@ Library to help developers build full MVP apps.
       - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onViewCreated method
       - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
 
-# Configuration
+# Configuration **I hardly recommend the use of *-compat libraries**
   - Add this lines your root-folder gradle:
     ```ruby
     allprojects {
       repositories {
-        ...
         maven { url 'https://jitpack.io' }
       }
     }
     ```
-    And this to your module-folder gradle:
+    And this to your module-folder gradle (**CHOOSE ONE**):
     ```ruby
     dependencies {
       compile 'com.github.iagocanalejas:andiag-mvp:core:<VERSION>'
+      compile 'com.github.iagocanalejas:andiag-mvp:core-compat:<VERSION>'
     }
     ```
 
-  - We have also implemented a common library that contains [extensions](docs/COMMONS.md), if you want to use it just replace your andiag-mvp dependency with:
+  - We have also implemented a common library that contains [extensions](docs/COMMONS.md) (**CHOOSE ONE**):
     ```ruby
     dependencies {
       compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'
+      compile 'com.github.iagocanalejas:andiag-mvp:commons-compat:<VERSION>'
     }
     ```
-
-    If you already have a compatible version of [Butterknife](https://github.com/JakeWharton/butterknife) in your gradle file you can add an exclude configuration like:
-    ```ruby
-    dependencies {
-      compile (compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'){
-          exclude group: 'com.jakewharton'
-      }
-    }
-    ```
-    **Current Butterknife Version in Library: 8.4.0**
     
     Documentation for [commons](docs/COMMONS.md) is available [here](docs/COMMONS.md)
 

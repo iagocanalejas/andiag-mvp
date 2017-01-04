@@ -6,7 +6,6 @@
     /**
      * Recommended singleton implementation for presenters
      */
-    //region Singleton
     private static CustomPresenter instance = null;
 
     private CustomPresenter() {
@@ -18,7 +17,6 @@
         }
         return instance;
     }
-    //endregion
 
     /**
      * Automatically called on presenter attach. VIEW MIGHT NOT BE CREATED JET

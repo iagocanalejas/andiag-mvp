@@ -9,30 +9,26 @@ Group of common things we use to implement in all our apps using MVP.
   ```ruby
   allprojects {
     repositories {
-      ...
       maven { url 'https://jitpack.io' }
     }
   }
   ```
-  And this to your module-folder gradle
+  And this to your module-folder gradle (**CHOOSE ONE**)
   ```ruby
   dependencies {
     compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'
+    compile 'com.github.iagocanalejas:andiag-mvp:commons-compat:<VERSION>'
   }
   ```
-  
-  If you already have a compatible version of [Butterknife](https://github.com/JakeWharton/butterknife) in your gradle file you can add this library like:
-  ```ruby
-  dependencies {
-    compile ('com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'){
-        exclude group: 'com.jakewharton'
-    }
-  }
-  ```
-  **Current Butterknife Version: 8.4.0**
-  
+
+# Included Activities Utils
+  - [AIAuthenticationActivity]()
+
+# Included Presenters Utils
+  - [AIAuthenticationPresenter]()
+
 # Included Fragment Utils
-  - [AIButterFragment](commons/src/main/java/com/andiag/commons/fragments/AIButterFragment.java) or [AICompatButterFragment](commons/src/main/java/com/andiag/commons/fragments/AICompatButterFragment.java)
+  - [AIButterFragment](commons/src/main/java/com/andiag/commons/fragments/AIButterFragment.java)
   
     Frees you from the load of handle **Butterknife** binders on fragments.
     
