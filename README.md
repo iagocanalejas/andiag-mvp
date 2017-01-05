@@ -12,16 +12,14 @@ Library to help developers build full MVP apps.
       - V -> Your view interface should implement [AIDelegatedView](shared-core/src/main/java/com/andiag/shared/core/views/AIDelegatedView.java)
   - For Activities
       - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java)
-      - Override method ``` onInitPresenter() ```
-      - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onResume method
-      - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singleton.
+      - Use annotation ``` @Presenter(presenter = MyPresenter.class) ```
+      - Presenters can comunicate with view between ```onResume()``` and ```onPause()```.
   - For Fragments
       - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java)
-      - Override method ``` onInitPresenter() ```
-      - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onViewCreated method
-      - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
+      - Use annotation ``` @Presenter(presenter = MyPresenter.class) ```
+      - Presenters can comunicate with view between ```onViewCreated(...)``` and ```onDestroyView(...)```.
 
-# Configuration **I hardly recommend the use of *-compat libraries**
+# Configuration
   - Add this lines your root-folder gradle:
     ```ruby
     allprojects {
@@ -81,8 +79,8 @@ Library to help developers build full MVP apps.
   - [Example for Fragments](docs/example_fragments.md)
   
 # Recomendations
-  - Use Presenters as Singletons
   - Use a different Presenter for each purpose
+  - Move all your Activity/Fragment logic to the presenter
 
 # Pull Requests
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:
