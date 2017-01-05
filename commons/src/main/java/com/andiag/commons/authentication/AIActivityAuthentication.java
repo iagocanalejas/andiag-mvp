@@ -3,13 +3,13 @@ package com.andiag.commons.authentication;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.core.views.AIActivity;
-import com.andiag.shared.commons.authentication.AIDelegatedAuthenticationView;
 
 import java.util.ArrayList;
 
@@ -54,7 +54,7 @@ public abstract class AIActivityAuthentication<P extends AIPresenterAuthenticati
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_SELECT_ACCOUNT:
-                if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
                     mPresenter.onAccountSelected(data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME));
                 }
                 break;
@@ -66,7 +66,8 @@ public abstract class AIActivityAuthentication<P extends AIPresenterAuthenticati
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_GET_ACCOUNTS:
-                if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED
+                        && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                     mPresenter.onGetAccountsPermissionRefused();
                     return;
                 }

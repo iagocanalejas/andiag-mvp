@@ -1,7 +1,7 @@
-package com.andiag.shared.core.presenters;
+package com.andiag.core.presenters;
 
 
-import com.andiag.shared.core.views.AIDelegatedView;
+import com.andiag.core.views.AIDelegatedView;
 
 /**
  * Created by Canalejas on 17/12/2016.

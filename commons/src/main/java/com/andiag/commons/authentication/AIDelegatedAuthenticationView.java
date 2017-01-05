@@ -1,10 +1,10 @@
-package com.andiag.shared.commons.authentication;
+package com.andiag.commons.authentication;
 
 import android.Manifest;
 import android.accounts.Account;
 import android.os.Build;
 
-import com.andiag.shared.core.views.AIDelegatedView;
+import com.andiag.core.views.AIDelegatedView;
 
 import java.util.ArrayList;
 

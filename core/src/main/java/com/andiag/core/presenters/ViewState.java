@@ -1,4 +1,4 @@
-package com.andiag.shared.core.presenters;
+package com.andiag.core.presenters;
 
 /**
  * Created by Canalejas on 31/12/2016.

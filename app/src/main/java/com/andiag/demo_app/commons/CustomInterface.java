@@ -1,6 +1,6 @@
 package com.andiag.demo_app.commons;
 
-import com.andiag.shared.core.views.AIDelegatedView;
+import com.andiag.core.views.AIDelegatedView;
 
 /**
  * Created by Canalejas on 04/01/2017.

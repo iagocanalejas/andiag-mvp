@@ -7,16 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.andiag.core.presenters.AIPresenter;
 import com.andiag.core.views.AIFragment;
-import com.andiag.shared.core.presenters.AIPresenter;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by Canalejas on 03/01/2017.
- */
 
+/**
+ * Created by Canalejas on 24/12/2016.
+ */
 public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment<P> {
     private static final String EXTRA_LAYOUT = "extra_layout";
 

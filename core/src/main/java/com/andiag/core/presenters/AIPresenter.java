@@ -1,10 +1,10 @@
-package com.andiag.shared.core.presenters;
+package com.andiag.core.presenters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.andiag.shared.core.views.AIDelegatedView;
+import com.andiag.core.views.AIDelegatedView;
 
 import java.lang.ref.WeakReference;
 

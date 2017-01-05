@@ -10,7 +10,7 @@ android {
     buildToolsVersion project.buildTools
 
     defaultConfig {
-        minSdkVersion project.minNoCompatSdk
+        minSdkVersion project.minSdk
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
@@ -27,5 +27,6 @@ android {
 }
 
 dependencies {
-    compile project(path: ':shared-core')
+    compile "com.android.support:support-fragment:$supportLib"
+    compile "com.android.support:appcompat-v7:$supportLib"
 }

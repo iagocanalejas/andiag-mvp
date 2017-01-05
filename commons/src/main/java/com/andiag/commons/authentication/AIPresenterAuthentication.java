@@ -3,16 +3,18 @@ package com.andiag.commons.authentication;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 
-import com.andiag.shared.commons.authentication.AIDelegatedAuthenticationView;
-import com.andiag.shared.core.presenters.AIPresenter;
-import com.andiag.shared.core.presenters.ViewState;
+import com.andiag.core.presenters.AIPresenter;
+import com.andiag.core.presenters.ViewState;
+import com.google.android.gms.common.AccountPicker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,17 +22,18 @@ import java.util.Arrays;
 /**
  * Created by Canalejas on 02/01/2017.
  */
-public abstract class AIPresenterAuthentication<C extends Context, V extends Activity & AIDelegatedAuthenticationView> extends AIPresenter<C, V> {
+public abstract class AIPresenterAuthentication<C extends Context, V extends AppCompatActivity & AIDelegatedAuthenticationView> extends AIPresenter<C, V> {
     private static final String TAG = AIPresenterAuthentication.class.getSimpleName();
 
     /**
-     * Name given to the account in the {@link SharedPreferences} file
+     * Name given to the account in the {@link android.content.SharedPreferences} file
      */
     private static final String SAVED_ACCOUNT = "AndIag:-AppAccount";
 
     protected Account mAccount;
     protected AccountManager mAccountManager;
     protected String mAccountType;
+    protected String mAccountToken;
     protected SharedPreferences mPreferences;
 
     public final void attach(C context, @NonNull V view, @NonNull AccountManager accountManager) {
@@ -74,6 +77,18 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends Act
     }
 
     /**
+     * Set the type of token this presenter will take care off
+     *
+     * @param accountToken given token type
+     */
+    public final void setAccountToken(String accountToken) {
+        if (mViewState.equals(ViewState.CREATED)) {
+            throw new IllegalStateException("Can't perform this action while view is showing");
+        }
+        mAccountToken = accountToken;
+    }
+
+    /**
      * Preferences where presenter will save the configuration
      *
      * @param preferences given {@link SharedPreferences}
@@ -100,7 +115,8 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends Act
         if (mAccountType == null) {
             throw new IllegalStateException("Account Type might not have been initialized");
         }
-        if (getView().checkSelfPermission(Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED
+                && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             getView().onAccountPermissionRequested();
             return null;
         }
@@ -150,9 +166,19 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends Act
      * @return {@link Intent} to new activity picker
      */
     public Intent newAccountSelectorIntent(ArrayList<Account> accounts) {
-        return AccountManager.newChooseAccountIntent(mAccount, accounts,
-                new String[]{mAccountType}, null, null,
-                null, null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return AccountManager.newChooseAccountIntent(mAccount, accounts,
+                    new String[]{mAccountType}, null, null,
+                    null, null);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            return AccountManager.newChooseAccountIntent(mAccount, accounts,
+                    new String[]{mAccountType}, false, null, null,
+                    null, null);
+        } else {
+            return AccountPicker.newChooseAccountIntent(mAccount, accounts,
+                    new String[]{mAccountType}, false, null,
+                    mAccountToken, null, null);
+        }
     }
 
     /**

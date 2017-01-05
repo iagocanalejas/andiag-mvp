@@ -10,7 +10,7 @@ android {
     buildToolsVersion project.buildTools
 
     defaultConfig {
-        minSdkVersion project.minNoCompatSdk
+        minSdkVersion project.minSdk
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
@@ -27,10 +27,9 @@ android {
 }
 
 dependencies {
+    compile "com.google.android.gms:play-services-base:$gms"
     compile "com.jakewharton:butterknife:$project.butterknife"
 
     //Release Dependencies
-    compile project(path: ':shared')
     compile project(path: ':core')
-    compile project(path: ':shared-commons')
 }

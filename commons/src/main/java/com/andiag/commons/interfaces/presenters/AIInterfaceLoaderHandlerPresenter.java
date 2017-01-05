@@ -1,4 +1,4 @@
-package com.andiag.shared.interfaces.presenters;
+package com.andiag.commons.interfaces.presenters;
 
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;

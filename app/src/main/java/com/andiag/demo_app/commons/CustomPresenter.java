@@ -3,7 +3,7 @@ package com.andiag.demo_app.commons;
 import android.app.Application;
 import android.os.Handler;
 
-import com.andiag.shared.core.presenters.AIPresenter;
+import com.andiag.core.presenters.AIPresenter;
 
 
 /**
