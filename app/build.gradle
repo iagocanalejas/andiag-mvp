@@ -1,19 +1,21 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-
-apply from: '../quality/quality.gradle'
-
-group = 'com.github.iagocanalejas'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion project.compiledSdk
     buildToolsVersion project.buildTools
-
     defaultConfig {
-        minSdkVersion project.minSdk
+        applicationId "es.coru.andiag.andiag_mvp_demo"
+        minSdkVersion project.minNoCompatSdk
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
     }
 
     packagingOptions {
@@ -27,6 +29,9 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:support-fragment:$supportLib"
-    compile "com.android.support:appcompat-v7:$supportLib"
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+
+    compile project(path: ':commons')
 }

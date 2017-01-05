@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'com.github.dcendents.android-maven'
 
 apply from: '../quality/quality.gradle'
@@ -15,8 +14,6 @@ android {
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
 
     packagingOptions {
@@ -30,10 +27,9 @@ android {
 }
 
 dependencies {
-    androidTestCompile "com.android.support.test:runner:${project.androidSupportTestRunner}"
-
-    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknife"
-
+    compile "com.google.android.gms:play-services-base:$gms"
     compile "com.jakewharton:butterknife:$project.butterknife"
-    compile project(':core')
+
+    //Release Dependencies
+    compile project(path: ':core')
 }

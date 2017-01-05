@@ -2,9 +2,13 @@ package com.andiag.core.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.core.presenters.AIPresenter;
+import com.andiag.core.presenters.Presenter;
+
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
@@ -15,12 +19,35 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
 
     protected P mPresenter;
 
+    /**
+     * {@link Exception} catch:
+     * - {@link Fragment.InstantiationException}
+     * - {@link IllegalAccessException}
+     * - {@link InvocationTargetException}
+     * - {@link NoSuchMethodException}
+     */
+    @SuppressWarnings("unchecked")
+    public final void onInitPresenter() {
+        if (getClass().getAnnotation(Presenter.class) != null) {
+            try {
+                mPresenter = ((Class<P>) getClass()
+                        .getAnnotation(Presenter.class).presenter())
+                        .getConstructor().newInstance();
+            } catch (Exception e) {
+                throw new IllegalStateException("No default constructor found in presenter");
+            }
+        } else {
+            throw new IllegalStateException("Not annotated Activity. Try using @Presenter annotation");
+        }
+    }
+
     @Override
     public void detachView() {
         mPresenter.detach();
         mPresenter = null;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void attachView() {
         mPresenter.attach(getApplication(), this);

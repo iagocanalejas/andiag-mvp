@@ -1,5 +1,6 @@
 package com.andiag.core.presenters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -11,14 +12,13 @@ import java.lang.ref.WeakReference;
  * Created by Canalejas on 17/12/2016.
  * All presenters must extends this class or implements {@link AIInterfacePresenter}
  */
-public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInterfacePresenter<C, V> {
+public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> implements AIInterfacePresenter<C, V> {
     private final static String TAG = AIPresenter.class.getSimpleName();
 
     private WeakReference<V> mView;
     private WeakReference<C> mContext;
 
-    private boolean mViewAttached = false;
-    private boolean mViewCreated = false;
+    protected ViewState mViewState = ViewState.DETACHED;
     private boolean mLoggingEnabled = false;
 
     protected AIPresenter() {
@@ -34,16 +34,25 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
     }
 
     /**
-     * Private util to log
+     * Util to easy logInfo in presenters
      *
      * @param message logged
      */
-    private void log(String message) {
-        if (mLoggingEnabled) {
-            Log.i(TAG, mView.getClass().getSimpleName() + message);
-        }
+    protected void logInfo(String message) {
+        logInfo(TAG, message);
     }
 
+    /**
+     * Util to easy logInfo in presenters
+     *
+     * @param tag     log tag
+     * @param message logged
+     */
+    protected void logInfo(String tag, String message) {
+        if (mLoggingEnabled && mView != null) {
+            Log.i(tag, mView.getClass().getSimpleName() + message);
+        }
+    }
     //endregion
 
     /**
@@ -51,11 +60,11 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final void attach(C context, @NonNull V view) {
-        this.mViewAttached = true;
         this.mView = new WeakReference<>(view);
         this.mContext = new WeakReference<>(context);
+        this.mViewState = ViewState.ATTACHED;
         onViewAttached();
-        log("Attached");
+        logInfo("Attached");
     }
 
     /**
@@ -63,11 +72,9 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final void detach() {
-        this.mViewAttached = false;
-        this.mView = null;
-        this.mContext = null;
+        logInfo("Detached");
+        this.mViewState = ViewState.DETACHED;
         onViewDetached();
-        log("Detached");
     }
 
     /**
@@ -87,11 +94,20 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
     }
 
     /**
+     * {@link AIInterfacePresenter#getViewState()}
+     */
+    @Override
+    public final ViewState getViewState() {
+        return mViewState;
+    }
+
+    /**
      * {@link AIInterfacePresenter#isViewAttached}
      */
     @Override
     public final boolean isViewAttached() {
-        return mViewAttached;
+        return mViewState == ViewState.ATTACHED
+                || mViewState == ViewState.CREATED;
     }
 
     /**
@@ -99,7 +115,7 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      */
     @Override
     public final boolean isViewCreated() {
-        return mViewCreated;
+        return mViewState == ViewState.CREATED;
     }
 
     /**
@@ -130,16 +146,16 @@ public abstract class AIPresenter<C, V extends AIDelegatedView> implements AIInt
      * From now on you can call view methods
      */
     public void onViewCreated() {
-        log("View Created");
-        mViewCreated = true;
+        logInfo("View Created");
+        this.mViewState = ViewState.CREATED;
     }
 
     /**
      * Call this method from view when it is destroyed.
      */
     public void onViewDestroyed() {
-        log("View Destroyed");
-        mViewCreated = false;
+        logInfo("View Destroyed");
+        this.mViewState = ViewState.DESTROYED;
     }
 
 }

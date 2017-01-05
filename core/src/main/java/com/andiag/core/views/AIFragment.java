@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.andiag.core.presenters.AIPresenter;
+import com.andiag.core.presenters.Presenter;
+
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
@@ -19,6 +22,29 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment impleme
     protected Context mParentContext;
     protected P mPresenter;
 
+    /**
+     * {@link Exception} catch:
+     * - {@link InstantiationException}
+     * - {@link IllegalAccessException}
+     * - {@link InvocationTargetException}
+     * - {@link NoSuchMethodException}
+     */
+    @SuppressWarnings("unchecked")
+    public final void onInitPresenter() {
+        if (getClass().getAnnotation(Presenter.class) != null) {
+            try {
+                mPresenter = ((Class<P>) getClass()
+                        .getAnnotation(Presenter.class).presenter())
+                        .getConstructor().newInstance();
+            } catch (Exception e) {
+                throw new IllegalStateException("No default constructor found in presenter");
+            }
+        } else {
+            throw new IllegalStateException("Not annotated Fragment. Try using @Presenter annotation");
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     @Override
     public void attachView() {
         mPresenter.attach(mParentContext, this);

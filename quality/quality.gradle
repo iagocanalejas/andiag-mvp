@@ -21,7 +21,7 @@ task findbugs(type: FindBugs, dependsOn: "assembleDebug") {
     effort = "max"
     reportLevel = "high"
     excludeFilter = new File("${project.rootDir}/quality/findbugs/findbugs-filter.xml")
-    classes = files("${project.rootDir}/library/build/intermediates/classes")
+    classes = files("${project.rootDir}/core/build/intermediates/classes")
 
     source 'src/main/java'
     include '**/*.java'
