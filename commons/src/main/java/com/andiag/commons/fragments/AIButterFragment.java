@@ -30,7 +30,10 @@ public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment
     /**
      * {@link AIButterFragment#mFragmentLayout} should be initialize here
      */
-    protected abstract void onInitLayout();
+    @Deprecated
+    protected void onInitLayout() {
+
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -50,6 +53,10 @@ public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment
         super.onCreateView(inflater, container, savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey(EXTRA_LAYOUT)) {
             mFragmentLayout = savedInstanceState.getInt(EXTRA_LAYOUT);
+        }
+
+        if (getClass().getAnnotation(FragmentLayout.class) != null) {
+            mFragmentLayout = getClass().getAnnotation(FragmentLayout.class).res();
         }
 
         if (mFragmentLayout == null) {
