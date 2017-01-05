@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
+import com.andiag.core.presenters.Presenter;
 import com.andiag.core.views.AIActivity;
 import com.andiag.demo_app.R;
 import com.andiag.demo_app.commons.CustomInterface;
@@ -13,17 +14,8 @@ import com.andiag.demo_app.commons.CustomPresenter;
 /**
  * Created by Canalejas on 29/12/2016.
  */
-
+@Presenter(presenter = CustomPresenter.class)
 public class SimpleActivity extends AIActivity<CustomPresenter> implements CustomInterface {
-
-    @Override
-    public void onInitPresenter() {
-        /**
-         * It's recommended to use a different presenter for each view
-         */
-        mPresenter = CustomPresenter.getInstance();
-        mPresenter.enableLogging();
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

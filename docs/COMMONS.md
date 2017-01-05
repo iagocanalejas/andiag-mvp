@@ -15,11 +15,10 @@ Group of common things we use to implement in all our apps using MVP.
     }
   }
   ```
-  And this to your module-folder gradle (**CHOOSE ONE**)
+  And this to your module-folder gradle
   ```ruby
   dependencies {
     compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'
-    compile 'com.github.iagocanalejas:andiag-mvp:commons-compat:<VERSION>'
   }
   ```
 
@@ -35,13 +34,13 @@ Group of common things we use to implement in all our apps using MVP.
     Frees you from the load of handle **Butterknife** binders on fragments.
     
     ```java
-    @Override
-    protected void onInitLayout(){
-      mFragmentLayout = R.layout.<YOUR_FRAGMENT_LAYOUT>
+    @FragmentLayout(res = R.layout.my_fragment_layout)
+    public class MyFragment extends AIButterFragment<MyPresenter> implements MyInterface {
+        //Your Fragment methods
     }
     ```
 
-    **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/butterknife/)**
+    **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/butterknife/ButterFragment.java)**
     
 # Included interfaces
   - [AIInterfaceErrorHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceErrorHandlerPresenter.java) When error-handlers are needed for data load

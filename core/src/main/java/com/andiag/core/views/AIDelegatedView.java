@@ -7,7 +7,7 @@ package com.andiag.core.views;
 public interface AIDelegatedView {
 
     /**
-     * Save a presenter instance
+     * Initialize a presenter instance
      */
     void onInitPresenter();
 
