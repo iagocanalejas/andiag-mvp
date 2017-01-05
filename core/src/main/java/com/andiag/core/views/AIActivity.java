@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.core.presenters.AIPresenter;
+import com.andiag.core.presenters.Presenter;
+
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
@@ -14,6 +17,29 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     private final static String TAG = AIActivity.class.getSimpleName();
 
     protected P mPresenter;
+
+    @Deprecated
+    @Override
+    public void onInitPresenter() {
+
+    }
+
+    private void createFromAnnotation() {
+        if (mPresenter == null && getClass().getAnnotation(Presenter.class) != null) {
+            Class<P> clazz = getClass().getAnnotation(Presenter.class).presenter();
+            try {
+                mPresenter = clazz.getConstructor(clazz).newInstance();
+            } catch (InstantiationException e) {
+                throw new IllegalStateException("No default constructor found");
+            } catch (IllegalAccessException e) {
+                throw new IllegalStateException("No default constructor found");
+            } catch (InvocationTargetException e) {
+                throw new IllegalStateException("No default constructor found");
+            } catch (NoSuchMethodException e) {
+                throw new IllegalStateException("No default constructor found");
+            }
+        }
+    }
 
     @Override
     public void detachView() {
@@ -31,6 +57,7 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onInitPresenter();
+        createFromAnnotation();
         attachView();
     }
 
@@ -38,6 +65,7 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     protected void onRestart() {
         super.onRestart();
         onInitPresenter();
+        createFromAnnotation();
         attachView();
     }
 

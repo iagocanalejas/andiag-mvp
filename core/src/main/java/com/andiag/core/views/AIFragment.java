@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.andiag.core.presenters.AIPresenter;
+import com.andiag.core.presenters.Presenter;
+
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
@@ -18,6 +21,29 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment impleme
 
     protected Context mParentContext;
     protected P mPresenter;
+
+    @Deprecated
+    @Override
+    public void onInitPresenter() {
+
+    }
+
+    private void createFromAnnotation() {
+        if (mPresenter == null && getClass().getAnnotation(Presenter.class) != null) {
+            Class<P> clazz = getClass().getAnnotation(Presenter.class).presenter();
+            try {
+                mPresenter = clazz.getConstructor(clazz).newInstance();
+            } catch (java.lang.InstantiationException e) {
+                throw new IllegalStateException("No default constructor found");
+            } catch (IllegalAccessException e) {
+                throw new IllegalStateException("No default constructor found");
+            } catch (InvocationTargetException e) {
+                throw new IllegalStateException("No default constructor found");
+            } catch (NoSuchMethodException e) {
+                throw new IllegalStateException("No default constructor found");
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -42,6 +68,7 @@ public abstract class AIFragment<P extends AIPresenter> extends Fragment impleme
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onInitPresenter();
+        createFromAnnotation();
         attachView();
     }
 

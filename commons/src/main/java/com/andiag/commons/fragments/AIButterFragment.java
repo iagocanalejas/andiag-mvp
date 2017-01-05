@@ -55,7 +55,7 @@ public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment
             mFragmentLayout = savedInstanceState.getInt(EXTRA_LAYOUT);
         }
 
-        if (getClass().getAnnotation(FragmentLayout.class) != null) {
+        if (mFragmentLayout == null && getClass().getAnnotation(FragmentLayout.class) != null) {
             mFragmentLayout = getClass().getAnnotation(FragmentLayout.class).res();
         }
 
