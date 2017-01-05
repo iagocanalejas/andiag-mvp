@@ -6,6 +6,8 @@ AndIag MVP Library
 =========
 Library to help developers build full MVP apps.
 
+# **[CHANGELOG](CHANGELOG.MD)**
+
 # Usage
   - Create your presenters extending [AIPresenter](core/src/main/java/com/andiag/core/presenters/AIPresenter.java) or implementing [AIInterfacePresenter](core/src/main/java/com/andiag/core/presenters/AIInterfacePresenter.java)
       - C -> Your view context (Application or Context for Activities, Activities or Context for Fragmentes)
