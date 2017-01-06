@@ -2,6 +2,7 @@ package com.andiag.core.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.andiag.core.presenters.AIPresenter;
@@ -18,26 +19,25 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
 
     protected P mPresenter;
 
-    @Deprecated
-    @Override
-    public void onInitPresenter() {
-
-    }
-
-    private void createFromAnnotation() {
-        if (mPresenter == null && getClass().getAnnotation(Presenter.class) != null) {
-            Class<P> clazz = getClass().getAnnotation(Presenter.class).presenter();
+    /**
+     * {@link Exception} catch:
+     * - {@link Fragment.InstantiationException}
+     * - {@link IllegalAccessException}
+     * - {@link InvocationTargetException}
+     * - {@link NoSuchMethodException}
+     */
+    @SuppressWarnings("unchecked")
+    public final void onInitPresenter() {
+        if (getClass().getAnnotation(Presenter.class) != null) {
             try {
-                mPresenter = clazz.getConstructor(clazz).newInstance();
-            } catch (InstantiationException e) {
-                throw new IllegalStateException("No default constructor found");
-            } catch (IllegalAccessException e) {
-                throw new IllegalStateException("No default constructor found");
-            } catch (InvocationTargetException e) {
-                throw new IllegalStateException("No default constructor found");
-            } catch (NoSuchMethodException e) {
-                throw new IllegalStateException("No default constructor found");
+                mPresenter = ((Class<P>) getClass()
+                        .getAnnotation(Presenter.class).presenter())
+                        .getConstructor().newInstance();
+            } catch (Exception e) {
+                throw new IllegalStateException("No default constructor found in presenter");
             }
+        } else {
+            throw new IllegalStateException("Not annotated Activity. Try using @Presenter annotation");
         }
     }
 
@@ -57,7 +57,6 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onInitPresenter();
-        createFromAnnotation();
         attachView();
     }
 
@@ -65,7 +64,6 @@ public abstract class AIActivity<P extends AIPresenter> extends AppCompatActivit
     protected void onRestart() {
         super.onRestart();
         onInitPresenter();
-        createFromAnnotation();
         attachView();
     }
 

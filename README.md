@@ -7,21 +7,19 @@ AndIag MVP Library
 Library to help developers build full MVP apps.
 
 # Usage
-  - Create your presenters extending [AIPresenter](shared-core/src/main/java/com/andiag/shared/core/presenters/AIPresenter.java) or implementing [AIInterfacePresenter](shared-core/src/main/java/com/andiag/shared/core/presenters/AIInterfacePresenter.java)
+  - Create your presenters extending [AIPresenter](core/src/main/java/com/andiag/core/presenters/AIPresenter.java) or implementing [AIInterfacePresenter](core/src/main/java/com/andiag/core/presenters/AIInterfacePresenter.java)
       - C -> Your view context (Application or Context for Activities, Activities or Context for Fragmentes)
       - V -> Your view interface should implement [AIDelegatedView](shared-core/src/main/java/com/andiag/shared/core/views/AIDelegatedView.java)
   - For Activities
       - Extend [AIActivity](core/src/main/java/com/andiag/core/views/AIActivity.java)
-      - Override method ``` onInitPresenter() ```
-      - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onResume method
-      - Presenters will be attached between ```onResume()``` and ```onPause()``` but you can instantiate it before if presenter is implemented as singleton.
+      - Use annotation ``` @Presenter(presenter = MyPresenter.class) ```
+      - Presenters can comunicate with view between ```onResume()``` and ```onPause()```.
   - For Fragments
       - Extend [AIFragment](core/src/main/java/com/andiag/core/views/AIFragment.java)
-      - Override method ``` onInitPresenter() ```
-      - ``` AIPresenter.onViewCreated(); ``` is automatically called in your onViewCreated method
-      - Presenters will be attached between ```onViewCreated(...)``` and ```onDestroyView(...)``` but you can instantiate it before if presenter is implemented as singleton.
+      - Use annotation ``` @Presenter(presenter = MyPresenter.class) ```
+      - Presenters can comunicate with view between ```onViewCreated(...)``` and ```onDestroyView(...)```.
 
-# Configuration **I hardly recommend the use of *-compat libraries**
+# Configuration
   - Add this lines your root-folder gradle:
     ```ruby
     allprojects {
@@ -30,31 +28,59 @@ Library to help developers build full MVP apps.
       }
     }
     ```
-    And this to your module-folder gradle (**CHOOSE ONE**):
+    And this to your module-folder gradle:
     ```ruby
     dependencies {
       compile 'com.github.iagocanalejas:andiag-mvp:core:<VERSION>'
-      compile 'com.github.iagocanalejas:andiag-mvp:core-compat:<VERSION>'
     }
     ```
 
-  - We have also implemented a common library that contains [extensions](docs/COMMONS.md) (**CHOOSE ONE**):
+  - We have also implemented a common library that contains [extensions](docs/COMMONS.md):
     ```ruby
     dependencies {
       compile 'com.github.iagocanalejas:andiag-mvp:commons:<VERSION>'
-      compile 'com.github.iagocanalejas:andiag-mvp:commons-compat:<VERSION>'
     }
     ```
     
     Documentation for [commons](docs/COMMONS.md) is available [here](docs/COMMONS.md)
+
+# Basic example
+   - Create your presenter
+      ```java
+      public class MyPresenter extends AIPresenter<MyActivity, MyInterface> {
+
+        public MyPresenter(){
+            //Required default constructor
+        }
+
+        /*CALLS TO VIEW*/
+
+        /*CALLS FROM VIEW*/
+
+      }
+      ```
+  - Use it in your Fragment
+      ```java
+      @Presenter(presenter = MyPresenter.class)
+      public class FragmentMain extends AIFragment<MyPresenter> implements MyInterface {
+
+          /*Fragment methods*/
+
+          /*CALLBACKS FOR THE PRESENTER*/
+
+      }
+      ```
+
+  **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/simple/SimpleFragment.java)**
+
 
 # Code Examples
   - [Example for Activities](docs/example_activities.md)
   - [Example for Fragments](docs/example_fragments.md)
   
 # Recomendations
-  - Use Presenters as Singletons
   - Use a different Presenter for each purpose
+  - Move all your Activity/Fragment logic to the presenter
 
 # Pull Requests
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:

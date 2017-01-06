@@ -3,6 +3,8 @@ package com.andiag.demo_app.butterknife;
 import android.widget.Toast;
 
 import com.andiag.commons.fragments.AIButterFragment;
+import com.andiag.commons.fragments.FragmentLayout;
+import com.andiag.core.presenters.Presenter;
 import com.andiag.demo_app.R;
 import com.andiag.demo_app.commons.CustomInterface;
 import com.andiag.demo_app.commons.CustomPresenter;
@@ -12,26 +14,13 @@ import butterknife.OnClick;
 /**
  * Created by Canalejas on 04/01/2017.
  */
-
+@Presenter(presenter = CustomPresenter.class)
+@FragmentLayout(res = R.layout.fragment_butterknife)
 public class ButterFragment extends AIButterFragment<CustomPresenter> implements CustomInterface {
 
     @OnClick(R.id.button_touch)
     public void onClickButton() {
         Toast.makeText(mParentContext, "I'm a button attached with Butterknife", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onInitLayout() {
-        mFragmentLayout = R.layout.fragment_butterknife;
-    }
-
-    @Override
-    public void onInitPresenter() {
-        /**
-         * It's recommended to use a different presenter for each view
-         */
-        mPresenter = CustomPresenter.getInstance();
-        mPresenter.enableLogging();
     }
 
     /**

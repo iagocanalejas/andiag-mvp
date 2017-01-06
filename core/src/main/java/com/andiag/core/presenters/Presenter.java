@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE) //on class level
 public @interface Presenter {
 
-    Class presenter();
+    Class<? extends AIPresenter> presenter();
 
 }

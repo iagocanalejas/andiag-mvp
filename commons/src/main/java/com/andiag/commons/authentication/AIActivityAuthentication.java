@@ -22,7 +22,7 @@ public abstract class AIActivityAuthentication<P extends AIPresenterAuthenticati
     /**
      * Code for the {@link Manifest.permission#GET_ACCOUNTS} permission
      */
-    private static final int PERMISSION_GET_ACCOUNTS = 122444;
+    protected static final int PERMISSION_GET_ACCOUNTS = 122444;
 
     /**
      * Code {@link AccountManager#newChooseAccountIntent} will return

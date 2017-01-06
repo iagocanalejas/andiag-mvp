@@ -31,12 +31,18 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
      */
     private static final String SAVED_ACCOUNT = "AndIag:-AppAccount";
 
-    protected Account mAccount;
-    protected AccountManager mAccountManager;
     protected String mAccountType;
     protected String mAccountToken;
+    protected Account mAccount;
+
+    protected AccountManager mAccountManager;
     protected SharedPreferences mPreferences;
 
+    public Account getAccount() {
+        return mAccount;
+    }
+
+    //region Attach
     public final void attach(C context, @NonNull V view, @NonNull AccountManager accountManager) {
         attach(context, view, accountManager, null);
     }
@@ -51,6 +57,7 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
         mPreferences = preferences;
         mAccountType = accountType;
     }
+    //endregion
 
     @Override
     public void onViewCreated() {

@@ -11,22 +11,12 @@ import com.andiag.core.presenters.AIPresenter;
  */
 public class CustomPresenter extends AIPresenter<Application, CustomInterface> {
 
-    /**
-     * Recommended singleton implementation for presenters
-     */
-    //region Singleton
-    private static CustomPresenter instance = null;
 
-    private CustomPresenter() {
+    public CustomPresenter() {
+        /**
+         * Required default constructor
+         */
     }
-
-    public static CustomPresenter getInstance() {
-        if (instance == null) {
-            instance = new CustomPresenter();
-        }
-        return instance;
-    }
-    //endregion
 
     /**
      * Automatically called on presenter attach. VIEW MIGHT NOT BE CREATED JET

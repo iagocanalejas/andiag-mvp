@@ -1,29 +1,10 @@
 # Example for Fragments
   - Create your presenter
   ```java
-  public class CustomPresenter extends AIPresenter<MyActivity, MyInterface> {
+  public class MyPresenter extends AIPresenter<MyActivity, MyInterface> {
 
-    /**
-     * Recommended singleton implementation for presenters
-     */
-    private static CustomPresenter instance = null;
-
-    private CustomPresenter() {
-    }
-
-    public static CustomPresenter getInstance() {
-        if (instance == null) {
-            instance = new CustomPresenter();
-        }
-        return instance;
-    }
-
-    /**
-     * Automatically called on presenter attach. VIEW MIGHT NOT BE CREATED JET
-     */
-    @Override
-    public void onViewAttached() {
-        Toast.makeText(getContext(), "Presenter On View Attached", Toast.LENGTH_SHORT).show();
+    public MyPresenter(){
+        //Required default constructor
     }
 
     /**
@@ -33,8 +14,8 @@
     public void onViewCreated() {
         super.onViewCreated();
         /**
-         * Once this method occurs {@link AIPresenter.isViewAttached} will return True.
-         * You can now safetly run your callbacks
+         * Once this method occurs {@link AIPresenter.isViewCreated} will return True.
+         * You can now safely run your callbacks
          */
     }
 
@@ -44,23 +25,14 @@
   ```
   - Use it in your Fragment
   ```java
-  public class FragmentMain extends AIFragment<CustomPresenter> {
+  @Presenter(presenter = MyPresenter.class)
+  public class FragmentMain extends AIFragment<MyPresenter> implements MyInterface {
 
-      @Override
-      public void onInitPresenter() {
-          mPresenter = CustomFragmentPresenter.getInstance();
-          mPresenter.enableLogging(); // You can add this to see presenter logs
-      }
-
-      @Nullable
-      @Override
-      public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-          return inflater.inflate(R.layout.fragment_main, container, false);
-      }
+      /*Fragment methods*/
 
       /*CALLBACKS FOR THE PRESENTER*/
       
   }
   ```
   
-  **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/simple/)**
+  **You can see a working example in the [demo-app](app/src/main/java/com/andiag/demo_app/simple/SimpleFragment.java)**
