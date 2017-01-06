@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
@@ -165,7 +166,9 @@ public abstract class AIPresenterAuthentication<C extends Context, V extends App
      * @param accounts where to select an {@link Account}
      * @return {@link Intent} to new activity picker
      */
-    public Intent newAccountSelectorIntent(ArrayList<Account> accounts) {
+    @SuppressWarnings("MissingPermission")
+    @RequiresPermission(Manifest.permission.GET_ACCOUNTS)
+    public Intent newAccountSelectorIntent(@NonNull ArrayList<Account> accounts) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return AccountManager.newChooseAccountIntent(mAccount, accounts,
                     new String[]{mAccountType}, null, null,

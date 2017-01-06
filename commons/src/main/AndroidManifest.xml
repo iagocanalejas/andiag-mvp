@@ -1,9 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.andiag.commons">
-
-    <uses-permission
-        android:name="android.permission.GET_ACCOUNTS"
-        tools:node="remove"/>
-
-</manifest>
+<manifest
+    package="com.andiag.commons"/>
