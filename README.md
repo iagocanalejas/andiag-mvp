@@ -59,13 +59,14 @@ Library to help developers build full MVP apps.
       @Repository(repository = MySingletonRepository.class, initiator = "getInstance") // Use this for singletons
       public class MyPresenter extends AIPresenter<MyActivity, MyInterface> {
 
-        public MyPresenter(){
-            //Required default constructor
-        }
+          public MyPresenter(){
+              super(); // Don't forget to call super constructor or repository will not be injected
+              //Required default constructor
+          }
 
-        /*CALLS TO VIEW*/
+          /*CALLS TO VIEW*/
 
-        /*CALLS FROM VIEW*/
+          /*CALLS FROM VIEW*/
 
       }
       ```

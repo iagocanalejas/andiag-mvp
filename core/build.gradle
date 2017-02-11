@@ -14,6 +14,7 @@ android {
         targetSdkVersion project.compiledSdk
         versionCode project.libraryCode
         versionName project.libraryName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     packagingOptions {
@@ -29,4 +30,8 @@ android {
 dependencies {
     compile "com.android.support:support-fragment:$supportLib"
     compile "com.android.support:appcompat-v7:$supportLib"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.mockito:mockito-core:$mockito"
+    testCompile "org.robolectric:robolectric:$robolectric"
 }

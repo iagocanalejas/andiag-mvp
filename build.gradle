@@ -5,17 +5,17 @@ ext {
     libraryName = '0.2.1'
     compiledSdk = 25
     buildTools = '25.0.2'
-    supportLib = '25.1.0'
+    supportLib = '25.1.1'
     gms = '10.0.1'
     minSdk = 9
     minNoCompatSdk = 23
 
-    androidSupportTestRunner = '0.5'
-
+    mockito = "2.7.5"
+    robolectric = "3.2.2"
 }
 
 buildscript {
-    ext.butterknife = '8.4.0'
+    ext.butterknife = '8.5.1'
     repositories {
         jcenter()
     }
