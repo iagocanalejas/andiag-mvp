@@ -1,7 +1,11 @@
+# NEXT
+    - Core
+        - Implemented @Repository annotation with AIRepository and AICrudRepository interfaces to inject in the presenter.
+
 # 0.3
     - Core
         - Changes in Presenter Interfaces Hierachy
-        - Null mAIPresenter in AIActivity and AIFragment now throws IllegalStateException
+        - Null AIPresenter in AIActivity and AIFragment now throws IllegalStateException
         - Changed boolean state controll to a ViewState enum in AIPresenter
         - Implemented @Presenter annotation to inject presenter
 

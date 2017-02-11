@@ -47,8 +47,16 @@ Library to help developers build full MVP apps.
     Documentation for [commons](docs/COMMONS.md) is available [here](docs/COMMONS.md)
 
 # Basic example
+   - Create your repository
+      ```java
+      public class MyRepository extends AIRepository {
+
+      }
+      ```
    - Create your presenter
       ```java
+      @Repository(repository = MyRepository.class) // Not required annotation
+      @Repository(repository = MySingletonRepository.class, initiator = "getInstance") // Use this for singletons
       public class MyPresenter extends AIPresenter<MyActivity, MyInterface> {
 
         public MyPresenter(){
