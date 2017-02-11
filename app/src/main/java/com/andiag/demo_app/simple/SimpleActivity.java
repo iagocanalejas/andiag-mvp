@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
-import com.andiag.core.presenters.Presenter;
+import com.andiag.core.annotations.Presenter;
 import com.andiag.core.views.AIActivity;
 import com.andiag.demo_app.R;
 import com.andiag.demo_app.commons.CustomInterface;

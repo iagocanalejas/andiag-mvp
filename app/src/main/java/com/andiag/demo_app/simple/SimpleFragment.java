@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.andiag.core.presenters.Presenter;
+import com.andiag.core.annotations.Presenter;
 import com.andiag.core.views.AIFragment;
 import com.andiag.demo_app.R;
 import com.andiag.demo_app.commons.CustomInterface;

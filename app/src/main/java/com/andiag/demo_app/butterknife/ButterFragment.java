@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.andiag.commons.fragments.AIButterFragment;
 import com.andiag.commons.fragments.FragmentLayout;
-import com.andiag.core.presenters.Presenter;
+import com.andiag.core.annotations.Presenter;
 import com.andiag.demo_app.R;
 import com.andiag.demo_app.commons.CustomInterface;
 import com.andiag.demo_app.commons.CustomPresenter;

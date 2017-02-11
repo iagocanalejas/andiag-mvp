@@ -4,9 +4,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.andiag.core.annotations.Repository;
+import com.andiag.core.repositories.AIRepository;
 import com.andiag.core.views.AIDelegatedView;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Method;
 
 /**
  * Created by Canalejas on 17/12/2016.
@@ -17,11 +20,37 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
 
     private WeakReference<V> mView;
     private WeakReference<C> mContext;
+    protected AIRepository mRepository;
 
     protected ViewState mViewState = ViewState.DETACHED;
     private boolean mLoggingEnabled = false;
 
     protected AIPresenter() {
+        Repository annotation = getClass().getAnnotation(Repository.class);
+        if (annotation != null) {
+            try {
+                if (annotation.initiator().equals("")) {
+                    mRepository = annotation.repository().getConstructor().newInstance();
+                } else {
+                    for (Method method : annotation.repository().getMethods()) {
+                        if (method.getName().equals(annotation.initiator())) {
+                            /**
+                             * Param can be null cause this case is just for singletons, that means,
+                             * method invoked should be static.
+                             */
+                            mRepository = (AIRepository) method.invoke(null);
+                        }
+                    }
+                    if (mRepository == null) {
+                        throw new IllegalStateException("Initiator method not found");
+                    }
+                }
+            } catch (Exception e) {
+                throw new IllegalStateException("Error injecting repository");
+            }
+        } else {
+            Log.i(TAG, "Not injected repository");
+        }
     }
 
     //region Logging
