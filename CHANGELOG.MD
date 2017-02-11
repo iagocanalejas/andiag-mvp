@@ -1,4 +1,4 @@
-# NEXT
+# 0.3
     - Core
         - Changes in Presenter Interfaces Hierachy
         - Null mAIPresenter in AIActivity and AIFragment now throws IllegalStateException
