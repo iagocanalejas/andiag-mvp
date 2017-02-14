@@ -101,37 +101,33 @@ Group of common things we use to implement in all our apps using MVP.
   ```
     
 # Included interfaces
-  - [AIInterfaceErrorHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceErrorHandlerPresenter.java) When error-handlers are needed for data load
+  - [AIErrorHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceErrorHandlerPresenter.java) When error-handlers are needed for data load
   ```java
       public interface AIInterfaceErrorHandlerPresenter {
 
-          Context getContext();
+          void onError(@Nullable String message);
 
-          void onLoadError(@Nullable String message);
-
-          void onLoadError(@StringRes int resId);
+          void onError(@StringRes int resId);
 
       }
   ```
 
-  - [AIInterfaceSuccessHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceSuccessHandlerPresenter.java) Basic success view
+  - [AISuccessHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceSuccessHandlerPresenter.java) Basic success view
     ```java
           public interface AIInterfaceSuccessHandlerPresenter<T> {
 
-              Context getContext();
-
-              void onLoadSuccess(@Nullable T data);
+              void onSuccess(@Nullable T data);
 
           }
     ```
 
-  - [AIInterfaceLoaderHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceLoaderHandlerPresenter.java) When you want also to handle data load success
+  - [AIProgressHandlerPresenter](commons/src/main/java/com/andiag/commons/interfaces/AIInterfaceLoaderHandlerPresenter.java) When you want also to handle data load success
   ```java
         public interface AIInterfaceLoaderHandlerPresenter<T> extends AIInterfaceErrorHandlerPresenter, AIInterfaceSuccessHandlerPresenter<T> {
 
-            void onLoadProgressChange(@Nullable String message);
+            void onProgressChange(@Nullable String message);
 
-            void onLoadProgressChange(@StringRes int resId);
+            void onProgressChange(@StringRes int resId);
 
         }
   ```
