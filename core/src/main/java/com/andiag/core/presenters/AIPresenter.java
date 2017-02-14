@@ -13,9 +13,9 @@ import java.lang.reflect.Method;
 
 /**
  * Created by Canalejas on 17/12/2016.
- * All presenters must extends this class or implements {@link AIInterfacePresenter}
+ * All presenters must extends this class or implements {@link AIBasePresenter}
  */
-public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> implements AIInterfacePresenter<C, V> {
+public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> implements AIBasePresenter<C, V> {
     private final static String TAG = AIPresenter.class.getSimpleName();
 
     private WeakReference<V> mView;
@@ -85,7 +85,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     //endregion
 
     /**
-     * {@link AIInterfacePresenter#attach}
+     * {@link AIBasePresenter#attach}
      */
     @Override
     public final void attach(C context, @NonNull V view) {
@@ -97,7 +97,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#detach}
+     * {@link AIBasePresenter#detach}
      */
     @Override
     public final void detach() {
@@ -107,7 +107,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#getView}
+     * {@link AIBasePresenter#getView}
      */
     @Override
     public final V getView() {
@@ -115,7 +115,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#getContext}
+     * {@link AIBasePresenter#getContext}
      */
     @Override
     public final C getContext() {
@@ -123,7 +123,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#getViewState()}
+     * {@link AIBasePresenter#getViewState()}
      */
     @Override
     public final ViewState getViewState() {
@@ -131,7 +131,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#isViewAttached}
+     * {@link AIBasePresenter#isViewAttached}
      */
     @Override
     public final boolean isViewAttached() {
@@ -140,7 +140,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#isViewCreated}
+     * {@link AIBasePresenter#isViewCreated}
      */
     @Override
     public final boolean isViewCreated() {
@@ -148,7 +148,7 @@ public abstract class AIPresenter<C extends Context, V extends AIDelegatedView> 
     }
 
     /**
-     * {@link AIInterfacePresenter#hasContext}
+     * {@link AIBasePresenter#hasContext}
      */
     @Override
     public final boolean hasContext() {

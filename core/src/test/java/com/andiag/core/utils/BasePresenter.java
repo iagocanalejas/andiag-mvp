@@ -7,6 +7,6 @@ import com.andiag.core.presenters.AIPresenter;
 /**
  * Created by Canalejas on 11/02/2017.
  */
-public class TestPresenter extends AIPresenter<Application, TestActivity> {
+public class BasePresenter extends AIPresenter<Application, PresenterActivity> {
 
 }

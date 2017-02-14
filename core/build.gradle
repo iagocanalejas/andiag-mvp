@@ -34,4 +34,5 @@ dependencies {
     testCompile "junit:junit:4.12"
     testCompile "org.mockito:mockito-core:$mockito"
     testCompile "org.robolectric:robolectric:$robolectric"
+    testCompile "org.robolectric:shadows-support-v4:$robolectric"
 }

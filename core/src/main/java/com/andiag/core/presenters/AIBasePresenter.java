@@ -6,7 +6,7 @@ import com.andiag.core.views.AIDelegatedView;
 /**
  * Created by Canalejas on 17/12/2016.
  */
-public interface AIInterfacePresenter<C, V extends AIDelegatedView> {
+public interface AIBasePresenter<C, V extends AIDelegatedView> {
 
     /**
      * @return presenter's view or null
