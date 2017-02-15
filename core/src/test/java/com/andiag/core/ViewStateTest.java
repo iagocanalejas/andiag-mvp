@@ -13,21 +13,18 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.support.v4.SupportFragmentController;
 import org.robolectric.util.ActivityController;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Created by Canalejas on 15/02/2017.
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 16)
-public class PresenterInjectionTest {
+public class ViewStateTest {
 
-    private ActivityController mActivityController;
-    private SupportFragmentController<PresenterFragment> mFragmentController;
+    ActivityController mActivityController;
+    SupportFragmentController<PresenterFragment> mFragmentController;
 
     @Before
     public void setUp() {
@@ -36,27 +33,20 @@ public class PresenterInjectionTest {
     }
 
     @Test
-    public void injectPresenterOnActivityTest() throws Exception {
+    public void activityStateFlowTest() throws Exception {
         PresenterActivity activity = (PresenterActivity) mActivityController.get();
 
-        assertNull(activity.getPresenter());
-
         mActivityController.create();
-
-        assertNotNull(activity.getPresenter());
         assertEquals(activity.getPresenter().getViewState(), ViewState.ATTACHED);
-    }
+        assertNotNull(activity.getPresenter().getView());
+        assertEquals(activity.getPresenter().getView(), activity);
 
-    @Test
-    public void injectPresenterOnFragmentTest() throws Exception {
-        PresenterFragment fragment = mFragmentController.get();
+        // TODO can't make Robolectric running with AppCompatActivity
+//        mActivityController.start().resume();
+//        assertEquals(activity.getPresenter().getViewState(), ViewState.CREATED);
+//        assertNotNull(activity.getPresenter().getContext());
+//        assertEquals(activity.getPresenter().getView(), activity);
 
-        assertNull(fragment.getPresenter());
-
-        mFragmentController.attach().create();
-
-        assertNotNull(fragment.getPresenter());
-        assertEquals(fragment.getPresenter().getViewState(), ViewState.ATTACHED);
     }
 
 }
