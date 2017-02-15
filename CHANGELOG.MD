@@ -1,4 +1,4 @@
-# NEXT
+# 0.4
     - Core
         - Implemented @Repository annotation with AIRepository and AICrudRepository interfaces to inject in the presenter.
 
