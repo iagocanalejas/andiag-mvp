@@ -19,9 +19,10 @@ import butterknife.Unbinder;
  */
 public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment<P> {
 
-    Unbinder unbinder;
     @LayoutRes
     protected Integer mFragmentLayout;
+
+    Unbinder unbinder;
 
     public AIButterFragment() {
     }
@@ -30,8 +31,9 @@ public abstract class AIButterFragment<P extends AIPresenter> extends AIFragment
      * {@link AIButterFragment#mFragmentLayout} should be initialize here
      */
     protected final void onInitLayout() {
-        if (getClass().getAnnotation(FragmentLayout.class) != null) {
-            mFragmentLayout = getClass().getAnnotation(FragmentLayout.class).res();
+        FragmentLayout annotation = getClass().getAnnotation(FragmentLayout.class);
+        if (annotation != null && annotation.res() != 0) {
+            mFragmentLayout = annotation.res();
         } else {
             throw new IllegalStateException("Not annotated Fragment. Try using @FragmentLayout annotation");
         }
